@@ -11,6 +11,9 @@
 		136184E61EC1894E00CE0D56 /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184E51EC1894E00CE0D56 /* MainWindowController.m */; };
 		136184EA1EC1897A00CE0D56 /* LoginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184E81EC1897A00CE0D56 /* LoginWindowController.m */; };
 		136184EF1EC1C2D700CE0D56 /* NSViewController+ErrorString.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184EE1EC1C2D700CE0D56 /* NSViewController+ErrorString.m */; };
+		136184F51EC1CC1000CE0D56 /* TableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184F41EC1CC1000CE0D56 /* TableListViewController.m */; };
+		136184F91EC1CCD300CE0D56 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184F71EC1CCD300CE0D56 /* ContentViewController.m */; };
+		136184FD1EC1D54500CE0D56 /* NSString+Oracle.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184FC1EC1D54500CE0D56 /* NSString+Oracle.m */; };
 		13A2E7C41E8FD6E30063A476 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C31E8FD6E30063A476 /* AppDelegate.m */; };
 		13A2E7C71E8FD6E30063A476 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C61E8FD6E30063A476 /* main.m */; };
 		13A2E7CA1E8FD6E30063A476 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C91E8FD6E30063A476 /* MainViewController.m */; };
@@ -31,6 +34,12 @@
 		136184E81EC1897A00CE0D56 /* LoginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindowController.m; sourceTree = "<group>"; };
 		136184ED1EC1C2D700CE0D56 /* NSViewController+ErrorString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSViewController+ErrorString.h"; sourceTree = "<group>"; };
 		136184EE1EC1C2D700CE0D56 /* NSViewController+ErrorString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+ErrorString.m"; sourceTree = "<group>"; };
+		136184F31EC1CC1000CE0D56 /* TableListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableListViewController.h; sourceTree = "<group>"; };
+		136184F41EC1CC1000CE0D56 /* TableListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableListViewController.m; sourceTree = "<group>"; };
+		136184F61EC1CCD300CE0D56 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		136184F71EC1CCD300CE0D56 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		136184FB1EC1D54500CE0D56 /* NSString+Oracle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Oracle.h"; sourceTree = "<group>"; };
+		136184FC1EC1D54500CE0D56 /* NSString+Oracle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Oracle.m"; sourceTree = "<group>"; };
 		13A2E7BF1E8FD6E30063A476 /* Course Work.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Course Work.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13A2E7C21E8FD6E30063A476 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		13A2E7C31E8FD6E30063A476 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -132,6 +141,10 @@
 				13A2E7C91E8FD6E30063A476 /* MainViewController.m */,
 				136184E01EC17BE500CE0D56 /* LoginViewController.h */,
 				136184E11EC17BE500CE0D56 /* LoginViewController.m */,
+				136184F31EC1CC1000CE0D56 /* TableListViewController.h */,
+				136184F41EC1CC1000CE0D56 /* TableListViewController.m */,
+				136184F61EC1CCD300CE0D56 /* ContentViewController.h */,
+				136184F71EC1CCD300CE0D56 /* ContentViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -152,6 +165,8 @@
 			children = (
 				136184ED1EC1C2D700CE0D56 /* NSViewController+ErrorString.h */,
 				136184EE1EC1C2D700CE0D56 /* NSViewController+ErrorString.m */,
+				136184FB1EC1D54500CE0D56 /* NSString+Oracle.h */,
+				136184FC1EC1D54500CE0D56 /* NSString+Oracle.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -385,12 +400,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				136184E61EC1894E00CE0D56 /* MainWindowController.m in Sources */,
+				136184FD1EC1D54500CE0D56 /* NSString+Oracle.m in Sources */,
 				136184E21EC17BE500CE0D56 /* LoginViewController.m in Sources */,
+				136184F91EC1CCD300CE0D56 /* ContentViewController.m in Sources */,
 				13A2E7CA1E8FD6E30063A476 /* MainViewController.m in Sources */,
 				136184EF1EC1C2D700CE0D56 /* NSViewController+ErrorString.m in Sources */,
 				136184EA1EC1897A00CE0D56 /* LoginWindowController.m in Sources */,
 				13A2E7C71E8FD6E30063A476 /* main.m in Sources */,
 				13A2E7C41E8FD6E30063A476 /* AppDelegate.m in Sources */,
+				136184F51EC1CC1000CE0D56 /* TableListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

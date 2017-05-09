@@ -7,39 +7,60 @@
 //
 
 #import "MainViewController.h"
+#import "TableListViewController.h"
+#import "ContentViewController.h"
 
-@interface MainViewController ()
+@interface MainViewController () <NSSplitViewDelegate>
 
-@property (nonatomic) IBOutlet NSTextField *testLabel;
+@property (nonatomic) IBOutlet NSSplitView *splitView;
+@property (nonatomic) TableListViewController *tableListViewController;
+@property (nonatomic) ContentViewController *contentViewController;
 
 @end
 
 
 @implementation MainViewController
 
+- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationController isKindOfClass:[TableListViewController class]]) {
+        self.tableListViewController = (TableListViewController *)segue.destinationController;
+        self.tableListViewController.conn = self.connection;
+    }
+    else if ([segue.destinationController isKindOfClass:[ContentViewController class]]) {
+        self.contentViewController = (ContentViewController *)segue.destinationController;
+        self.contentViewController.conn = self.connection;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.splitView setPosition:200 ofDividerAtIndex:0];
 
-    // Do any additional setup after loading the view.
     
 }
 
-- (void)viewWillAppear
+- (void)setConnection:(OCI_Connection *)connection
 {
-    [super viewWillAppear];
-    
-    self.testLabel.stringValue = [NSString stringWithFormat:@"%s, %s, %s",
-                                  OCI_GetDatabase(self.connection), OCI_GetUserName(self.connection),
-                                  OCI_GetPassword(self.connection)];
+    _connection = connection;
+    self.tableListViewController.conn = connection;
+    self.contentViewController.conn = connection;
 }
 
-
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
-    
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMinimumPosition ofSubviewAt:(NSInteger)dividerIndex
+{
+    return 200;
 }
 
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMaximumPosition ofSubviewAt:(NSInteger)dividerIndex
+{
+    return 400;
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
+{
+    return YES;
+}
 
 @end

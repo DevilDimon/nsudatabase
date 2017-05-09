@@ -26,11 +26,6 @@
 
 @implementation LoginViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-}
-
 - (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowMainWindow"]) {
@@ -39,12 +34,18 @@
         mainVC.connection = self.conn;
     }
 }
+
 - (IBAction)onLoginPressed:(id)sender
 {
     
     NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
     
     [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    
+    // TODO: REMOVE
+    self.connectionTextField.stringValue = @"localhost:49161";
+    self.loginTextField.stringValue = @"system";
+    self.passwordTextField.stringValue = @"oracle";
     
     self.conn = OCI_ConnectionCreate([self.connectionTextField.stringValue UTF8String],
         [self.loginTextField.stringValue UTF8String], [self.passwordTextField.stringValue UTF8String], OCI_SESSION_DEFAULT);
