@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "MainWindowController.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,7 +17,7 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    
 }
 
 

@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ocilib.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
-
 
 @end
 

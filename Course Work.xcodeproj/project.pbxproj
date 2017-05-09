@@ -7,23 +7,107 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		136184E21EC17BE500CE0D56 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184E11EC17BE500CE0D56 /* LoginViewController.m */; };
+		136184E61EC1894E00CE0D56 /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184E51EC1894E00CE0D56 /* MainWindowController.m */; };
+		136184EA1EC1897A00CE0D56 /* LoginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184E81EC1897A00CE0D56 /* LoginWindowController.m */; };
+		136184EF1EC1C2D700CE0D56 /* NSViewController+ErrorString.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184EE1EC1C2D700CE0D56 /* NSViewController+ErrorString.m */; };
 		13A2E7C41E8FD6E30063A476 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C31E8FD6E30063A476 /* AppDelegate.m */; };
 		13A2E7C71E8FD6E30063A476 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C61E8FD6E30063A476 /* main.m */; };
-		13A2E7CA1E8FD6E30063A476 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C91E8FD6E30063A476 /* ViewController.m */; };
+		13A2E7CA1E8FD6E30063A476 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C91E8FD6E30063A476 /* MainViewController.m */; };
 		13A2E7CC1E8FD6E30063A476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13A2E7CB1E8FD6E30063A476 /* Assets.xcassets */; };
 		13A2E7CF1E8FD6E30063A476 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13A2E7CD1E8FD6E30063A476 /* Main.storyboard */; };
+		13A2E8231E8FE0260063A476 /* libnnz12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2E7E21E8FD8810063A476 /* libnnz12.dylib */; };
+		13A2E8251E8FE0260063A476 /* libons.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2E7E71E8FD8810063A476 /* libons.dylib */; };
+		13A2E82C1E8FE0C50063A476 /* libclntsh.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2E7DE1E8FD8810063A476 /* libclntsh.dylib */; };
+		13A2E82D1E8FE0C50063A476 /* libclntshcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2E7E01E8FD8810063A476 /* libclntshcore.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		136184E01EC17BE500CE0D56 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		136184E11EC17BE500CE0D56 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		136184E41EC1894E00CE0D56 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
+		136184E51EC1894E00CE0D56 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
+		136184E71EC1897A00CE0D56 /* LoginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWindowController.h; sourceTree = "<group>"; };
+		136184E81EC1897A00CE0D56 /* LoginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindowController.m; sourceTree = "<group>"; };
+		136184ED1EC1C2D700CE0D56 /* NSViewController+ErrorString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSViewController+ErrorString.h"; sourceTree = "<group>"; };
+		136184EE1EC1C2D700CE0D56 /* NSViewController+ErrorString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+ErrorString.m"; sourceTree = "<group>"; };
 		13A2E7BF1E8FD6E30063A476 /* Course Work.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Course Work.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13A2E7C21E8FD6E30063A476 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		13A2E7C31E8FD6E30063A476 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		13A2E7C61E8FD6E30063A476 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		13A2E7C81E8FD6E30063A476 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		13A2E7C91E8FD6E30063A476 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		13A2E7C81E8FD6E30063A476 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		13A2E7C91E8FD6E30063A476 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		13A2E7CB1E8FD6E30063A476 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13A2E7CE1E8FD6E30063A476 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13A2E7D01E8FD6E30063A476 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13A2E7D71E8FD8670063A476 /* libclntsh.dylib.12.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; name = libclntsh.dylib.12.1; path = ../../../../Downloads/instantclient_12_1/libclntsh.dylib.12.1; sourceTree = "<group>"; };
+		13A2E7DA1E8FD8810063A476 /* adrci */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = adrci; sourceTree = "<group>"; };
+		13A2E7DB1E8FD8810063A476 /* BASIC_README */ = {isa = PBXFileReference; lastKnownFileType = text; path = BASIC_README; sourceTree = "<group>"; };
+		13A2E7DC1E8FD8810063A476 /* genezi */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genezi; sourceTree = "<group>"; };
+		13A2E7DD1E8FD8810063A476 /* glogin.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = glogin.sql; sourceTree = "<group>"; };
+		13A2E7DE1E8FD8810063A476 /* libclntsh.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libclntsh.dylib; sourceTree = "<group>"; };
+		13A2E7DF1E8FD8810063A476 /* libclntsh.dylib.12.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = libclntsh.dylib.12.1; sourceTree = "<group>"; };
+		13A2E7E01E8FD8810063A476 /* libclntshcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libclntshcore.dylib; sourceTree = "<group>"; };
+		13A2E7E11E8FD8810063A476 /* libclntshcore.dylib.12.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = libclntshcore.dylib.12.1; sourceTree = "<group>"; };
+		13A2E7E21E8FD8810063A476 /* libnnz12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libnnz12.dylib; sourceTree = "<group>"; };
+		13A2E7E31E8FD8810063A476 /* libocci.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libocci.dylib; sourceTree = "<group>"; };
+		13A2E7E41E8FD8810063A476 /* libocci.dylib.12.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = libocci.dylib.12.1; sourceTree = "<group>"; };
+		13A2E7E51E8FD8810063A476 /* libociei.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = libociei.dylib; sourceTree = "<group>"; };
+		13A2E7E61E8FD8810063A476 /* libocijdbc12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = libocijdbc12.dylib; sourceTree = "<group>"; };
+		13A2E7E71E8FD8810063A476 /* libons.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libons.dylib; sourceTree = "<group>"; };
+		13A2E7E81E8FD8810063A476 /* liboramysql12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = liboramysql12.dylib; sourceTree = "<group>"; };
+		13A2E7E91E8FD8810063A476 /* libsqlplus.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsqlplus.dylib; sourceTree = "<group>"; };
+		13A2E7EA1E8FD8810063A476 /* libsqlplusic.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = libsqlplusic.dylib; sourceTree = "<group>"; };
+		13A2E7EB1E8FD8810063A476 /* ojdbc6.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = ojdbc6.jar; sourceTree = "<group>"; };
+		13A2E7EC1E8FD8810063A476 /* ojdbc7.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = ojdbc7.jar; sourceTree = "<group>"; };
+		13A2E7EF1E8FD8810063A476 /* oraaccess.xsd */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = oraaccess.xsd; sourceTree = "<group>"; };
+		13A2E7F11E8FD8810063A476 /* cdemo81.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cdemo81.c; sourceTree = "<group>"; };
+		13A2E7F21E8FD8810063A476 /* demo.mk */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo.mk; sourceTree = "<group>"; };
+		13A2E7F31E8FD8810063A476 /* occidemo.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = occidemo.sql; sourceTree = "<group>"; };
+		13A2E7F41E8FD8810063A476 /* occidemod.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = occidemod.sql; sourceTree = "<group>"; };
+		13A2E7F51E8FD8810063A476 /* occidml.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = occidml.cpp; sourceTree = "<group>"; };
+		13A2E7F61E8FD8810063A476 /* occiobj.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = occiobj.cpp; sourceTree = "<group>"; };
+		13A2E7F71E8FD8810063A476 /* occiobj.typ */ = {isa = PBXFileReference; lastKnownFileType = text; path = occiobj.typ; sourceTree = "<group>"; };
+		13A2E7F81E8FD8810063A476 /* oraaccess.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = oraaccess.xml; sourceTree = "<group>"; };
+		13A2E7F91E8FD8810063A476 /* setuporamysql.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = setuporamysql.sh; sourceTree = "<group>"; };
+		13A2E7FB1E8FD8810063A476 /* ldap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ldap.h; sourceTree = "<group>"; };
+		13A2E7FC1E8FD8810063A476 /* nzerror.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nzerror.h; sourceTree = "<group>"; };
+		13A2E7FD1E8FD8810063A476 /* nzt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nzt.h; sourceTree = "<group>"; };
+		13A2E7FE1E8FD8810063A476 /* occi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = occi.h; sourceTree = "<group>"; };
+		13A2E7FF1E8FD8810063A476 /* occiAQ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = occiAQ.h; sourceTree = "<group>"; };
+		13A2E8001E8FD8810063A476 /* occiCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = occiCommon.h; sourceTree = "<group>"; };
+		13A2E8011E8FD8810063A476 /* occiControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = occiControl.h; sourceTree = "<group>"; };
+		13A2E8021E8FD8810063A476 /* occiData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = occiData.h; sourceTree = "<group>"; };
+		13A2E8031E8FD8810063A476 /* occiObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = occiObjects.h; sourceTree = "<group>"; };
+		13A2E8041E8FD8810063A476 /* oci.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oci.h; sourceTree = "<group>"; };
+		13A2E8051E8FD8810063A476 /* oci1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oci1.h; sourceTree = "<group>"; };
+		13A2E8061E8FD8810063A476 /* oci8dp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oci8dp.h; sourceTree = "<group>"; };
+		13A2E8071E8FD8810063A476 /* ociap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ociap.h; sourceTree = "<group>"; };
+		13A2E8081E8FD8810063A476 /* ociapr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ociapr.h; sourceTree = "<group>"; };
+		13A2E8091E8FD8810063A476 /* ocidef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocidef.h; sourceTree = "<group>"; };
+		13A2E80A1E8FD8810063A476 /* ocidem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocidem.h; sourceTree = "<group>"; };
+		13A2E80B1E8FD8810063A476 /* ocidfn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocidfn.h; sourceTree = "<group>"; };
+		13A2E80C1E8FD8810063A476 /* ociextp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ociextp.h; sourceTree = "<group>"; };
+		13A2E80D1E8FD8810063A476 /* ocikpr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocikpr.h; sourceTree = "<group>"; };
+		13A2E80E1E8FD8810063A476 /* ocixmldb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocixmldb.h; sourceTree = "<group>"; };
+		13A2E80F1E8FD8810063A476 /* ocixstream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocixstream.h; sourceTree = "<group>"; };
+		13A2E8101E8FD8810063A476 /* odci.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = odci.h; sourceTree = "<group>"; };
+		13A2E8111E8FD8810063A476 /* oratypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oratypes.h; sourceTree = "<group>"; };
+		13A2E8121E8FD8810063A476 /* ori.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ori.h; sourceTree = "<group>"; };
+		13A2E8131E8FD8810063A476 /* orid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = orid.h; sourceTree = "<group>"; };
+		13A2E8141E8FD8810063A476 /* orl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = orl.h; sourceTree = "<group>"; };
+		13A2E8151E8FD8810063A476 /* oro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oro.h; sourceTree = "<group>"; };
+		13A2E8161E8FD8810063A476 /* ort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ort.h; sourceTree = "<group>"; };
+		13A2E8171E8FD8810063A476 /* xa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xa.h; sourceTree = "<group>"; };
+		13A2E8181E8FD8810063A476 /* ott */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ott; sourceTree = "<group>"; };
+		13A2E8191E8FD8810063A476 /* ottclasses.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ottclasses.zip; sourceTree = "<group>"; };
+		13A2E81A1E8FD8810063A476 /* SDK_README */ = {isa = PBXFileReference; lastKnownFileType = text; path = SDK_README; sourceTree = "<group>"; };
+		13A2E81B1E8FD8810063A476 /* sqlplus */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = sqlplus; sourceTree = "<group>"; };
+		13A2E81C1E8FD8810063A476 /* SQLPLUS_README */ = {isa = PBXFileReference; lastKnownFileType = text; path = SQLPLUS_README; sourceTree = "<group>"; };
+		13A2E81D1E8FD8810063A476 /* uidrvci */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = uidrvci; sourceTree = "<group>"; };
+		13A2E81E1E8FD8810063A476 /* xstreams.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = xstreams.jar; sourceTree = "<group>"; };
+		13A2E81F1E8FD8A70063A476 /* ocilib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ocilib.h; path = ../../../../../../usr/local/include/ocilib.h; sourceTree = "<group>"; };
+		13A2E8301E90061A0063A476 /* ocilib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ocilib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +115,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A2E82C1E8FE0C50063A476 /* libclntsh.dylib in Frameworks */,
+				13A2E82D1E8FE0C50063A476 /* libclntshcore.dylib in Frameworks */,
+				13A2E8231E8FE0260063A476 /* libnnz12.dylib in Frameworks */,
+				13A2E8251E8FE0260063A476 /* libons.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		136184DF1EC17BBD00CE0D56 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				13A2E7C81E8FD6E30063A476 /* MainViewController.h */,
+				13A2E7C91E8FD6E30063A476 /* MainViewController.m */,
+				136184E01EC17BE500CE0D56 /* LoginViewController.h */,
+				136184E11EC17BE500CE0D56 /* LoginViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		136184E31EC1893600CE0D56 /* WindowController */ = {
+			isa = PBXGroup;
+			children = (
+				136184E41EC1894E00CE0D56 /* MainWindowController.h */,
+				136184E51EC1894E00CE0D56 /* MainWindowController.m */,
+				136184E71EC1897A00CE0D56 /* LoginWindowController.h */,
+				136184E81EC1897A00CE0D56 /* LoginWindowController.m */,
+			);
+			name = WindowController;
+			sourceTree = "<group>";
+		};
+		136184EC1EC1C2AA00CE0D56 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				136184ED1EC1C2D700CE0D56 /* NSViewController+ErrorString.h */,
+				136184EE1EC1C2D700CE0D56 /* NSViewController+ErrorString.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		13A2E7B61E8FD6E30063A476 = {
 			isa = PBXGroup;
 			children = (
 				13A2E7C11E8FD6E30063A476 /* Course Work */,
 				13A2E7C01E8FD6E30063A476 /* Products */,
+				13A2E7D61E8FD8670063A476 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,10 +176,12 @@
 		13A2E7C11E8FD6E30063A476 /* Course Work */ = {
 			isa = PBXGroup;
 			children = (
+				136184EC1EC1C2AA00CE0D56 /* Categories */,
+				136184E31EC1893600CE0D56 /* WindowController */,
+				136184DF1EC17BBD00CE0D56 /* ViewController */,
+				13A2E8301E90061A0063A476 /* ocilib.h */,
 				13A2E7C21E8FD6E30063A476 /* AppDelegate.h */,
 				13A2E7C31E8FD6E30063A476 /* AppDelegate.m */,
-				13A2E7C81E8FD6E30063A476 /* ViewController.h */,
-				13A2E7C91E8FD6E30063A476 /* ViewController.m */,
 				13A2E7CB1E8FD6E30063A476 /* Assets.xcassets */,
 				13A2E7CD1E8FD6E30063A476 /* Main.storyboard */,
 				13A2E7D01E8FD6E30063A476 /* Info.plist */,
@@ -74,6 +196,121 @@
 				13A2E7C61E8FD6E30063A476 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13A2E7D61E8FD8670063A476 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13A2E81F1E8FD8A70063A476 /* ocilib.h */,
+				13A2E7D91E8FD8810063A476 /* instantclient_12_1 */,
+				13A2E7D71E8FD8670063A476 /* libclntsh.dylib.12.1 */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		13A2E7D91E8FD8810063A476 /* instantclient_12_1 */ = {
+			isa = PBXGroup;
+			children = (
+				13A2E7DA1E8FD8810063A476 /* adrci */,
+				13A2E7DB1E8FD8810063A476 /* BASIC_README */,
+				13A2E7DC1E8FD8810063A476 /* genezi */,
+				13A2E7DD1E8FD8810063A476 /* glogin.sql */,
+				13A2E7DE1E8FD8810063A476 /* libclntsh.dylib */,
+				13A2E7DF1E8FD8810063A476 /* libclntsh.dylib.12.1 */,
+				13A2E7E01E8FD8810063A476 /* libclntshcore.dylib */,
+				13A2E7E11E8FD8810063A476 /* libclntshcore.dylib.12.1 */,
+				13A2E7E21E8FD8810063A476 /* libnnz12.dylib */,
+				13A2E7E31E8FD8810063A476 /* libocci.dylib */,
+				13A2E7E41E8FD8810063A476 /* libocci.dylib.12.1 */,
+				13A2E7E51E8FD8810063A476 /* libociei.dylib */,
+				13A2E7E61E8FD8810063A476 /* libocijdbc12.dylib */,
+				13A2E7E71E8FD8810063A476 /* libons.dylib */,
+				13A2E7E81E8FD8810063A476 /* liboramysql12.dylib */,
+				13A2E7E91E8FD8810063A476 /* libsqlplus.dylib */,
+				13A2E7EA1E8FD8810063A476 /* libsqlplusic.dylib */,
+				13A2E7EB1E8FD8810063A476 /* ojdbc6.jar */,
+				13A2E7EC1E8FD8810063A476 /* ojdbc7.jar */,
+				13A2E7ED1E8FD8810063A476 /* sdk */,
+				13A2E81B1E8FD8810063A476 /* sqlplus */,
+				13A2E81C1E8FD8810063A476 /* SQLPLUS_README */,
+				13A2E81D1E8FD8810063A476 /* uidrvci */,
+				13A2E81E1E8FD8810063A476 /* xstreams.jar */,
+			);
+			name = instantclient_12_1;
+			path = ../../../../Downloads/instantclient_12_1;
+			sourceTree = "<group>";
+		};
+		13A2E7ED1E8FD8810063A476 /* sdk */ = {
+			isa = PBXGroup;
+			children = (
+				13A2E7EE1E8FD8810063A476 /* admin */,
+				13A2E7F01E8FD8810063A476 /* demo */,
+				13A2E7FA1E8FD8810063A476 /* include */,
+				13A2E8181E8FD8810063A476 /* ott */,
+				13A2E8191E8FD8810063A476 /* ottclasses.zip */,
+				13A2E81A1E8FD8810063A476 /* SDK_README */,
+			);
+			path = sdk;
+			sourceTree = "<group>";
+		};
+		13A2E7EE1E8FD8810063A476 /* admin */ = {
+			isa = PBXGroup;
+			children = (
+				13A2E7EF1E8FD8810063A476 /* oraaccess.xsd */,
+			);
+			path = admin;
+			sourceTree = "<group>";
+		};
+		13A2E7F01E8FD8810063A476 /* demo */ = {
+			isa = PBXGroup;
+			children = (
+				13A2E7F11E8FD8810063A476 /* cdemo81.c */,
+				13A2E7F21E8FD8810063A476 /* demo.mk */,
+				13A2E7F31E8FD8810063A476 /* occidemo.sql */,
+				13A2E7F41E8FD8810063A476 /* occidemod.sql */,
+				13A2E7F51E8FD8810063A476 /* occidml.cpp */,
+				13A2E7F61E8FD8810063A476 /* occiobj.cpp */,
+				13A2E7F71E8FD8810063A476 /* occiobj.typ */,
+				13A2E7F81E8FD8810063A476 /* oraaccess.xml */,
+				13A2E7F91E8FD8810063A476 /* setuporamysql.sh */,
+			);
+			path = demo;
+			sourceTree = "<group>";
+		};
+		13A2E7FA1E8FD8810063A476 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				13A2E7FB1E8FD8810063A476 /* ldap.h */,
+				13A2E7FC1E8FD8810063A476 /* nzerror.h */,
+				13A2E7FD1E8FD8810063A476 /* nzt.h */,
+				13A2E7FE1E8FD8810063A476 /* occi.h */,
+				13A2E7FF1E8FD8810063A476 /* occiAQ.h */,
+				13A2E8001E8FD8810063A476 /* occiCommon.h */,
+				13A2E8011E8FD8810063A476 /* occiControl.h */,
+				13A2E8021E8FD8810063A476 /* occiData.h */,
+				13A2E8031E8FD8810063A476 /* occiObjects.h */,
+				13A2E8041E8FD8810063A476 /* oci.h */,
+				13A2E8051E8FD8810063A476 /* oci1.h */,
+				13A2E8061E8FD8810063A476 /* oci8dp.h */,
+				13A2E8071E8FD8810063A476 /* ociap.h */,
+				13A2E8081E8FD8810063A476 /* ociapr.h */,
+				13A2E8091E8FD8810063A476 /* ocidef.h */,
+				13A2E80A1E8FD8810063A476 /* ocidem.h */,
+				13A2E80B1E8FD8810063A476 /* ocidfn.h */,
+				13A2E80C1E8FD8810063A476 /* ociextp.h */,
+				13A2E80D1E8FD8810063A476 /* ocikpr.h */,
+				13A2E80E1E8FD8810063A476 /* ocixmldb.h */,
+				13A2E80F1E8FD8810063A476 /* ocixstream.h */,
+				13A2E8101E8FD8810063A476 /* odci.h */,
+				13A2E8111E8FD8810063A476 /* oratypes.h */,
+				13A2E8121E8FD8810063A476 /* ori.h */,
+				13A2E8131E8FD8810063A476 /* orid.h */,
+				13A2E8141E8FD8810063A476 /* orl.h */,
+				13A2E8151E8FD8810063A476 /* oro.h */,
+				13A2E8161E8FD8810063A476 /* ort.h */,
+				13A2E8171E8FD8810063A476 /* xa.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +384,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13A2E7CA1E8FD6E30063A476 /* ViewController.m in Sources */,
+				136184E61EC1894E00CE0D56 /* MainWindowController.m in Sources */,
+				136184E21EC17BE500CE0D56 /* LoginViewController.m in Sources */,
+				13A2E7CA1E8FD6E30063A476 /* MainViewController.m in Sources */,
+				136184EF1EC1C2D700CE0D56 /* NSViewController+ErrorString.m in Sources */,
+				136184EA1EC1897A00CE0D56 /* LoginWindowController.m in Sources */,
 				13A2E7C71E8FD6E30063A476 /* main.m in Sources */,
 				13A2E7C41E8FD6E30063A476 /* AppDelegate.m in Sources */,
 			);
@@ -264,8 +505,18 @@
 				DEVELOPMENT_TEAM = QDY49F48G2;
 				INFOPLIST_FILE = "Course Work/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/lib/instantclient_11_2,
+				);
+				OTHER_LDFLAGS = (
+					"-locilib",
+					"-lclntsh",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.nsu.fit.g14201.dserov.Course-Work";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
 			name = Debug;
 		};
@@ -277,8 +528,18 @@
 				DEVELOPMENT_TEAM = QDY49F48G2;
 				INFOPLIST_FILE = "Course Work/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/lib/instantclient_11_2,
+				);
+				OTHER_LDFLAGS = (
+					"-locilib",
+					"-lclntsh",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.nsu.fit.g14201.dserov.Course-Work";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
 			name = Release;
 		};
@@ -301,6 +562,7 @@
 				13A2E7D51E8FD6E30063A476 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

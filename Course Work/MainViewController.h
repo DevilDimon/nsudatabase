@@ -7,9 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ocilib.h"
 
-@interface ViewController : NSViewController
+@interface MainViewController : NSViewController
 
+@property (nonatomic, assign) OCI_Connection *connection;
 
 @end
 
