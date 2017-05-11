@@ -12,5 +12,6 @@
 @interface ContentViewController : NSViewController
 
 @property (nonatomic, assign) OCI_Connection *conn;
+@property (nonatomic, copy) NSString *tableName;
 
 @end

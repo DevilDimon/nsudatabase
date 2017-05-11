@@ -10,13 +10,26 @@
 
 @interface ContentViewController ()
 
+
 @end
 
 @implementation ContentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+    NSLog(@"DidLoad");
+}
+
+- (void)viewWillAppear
+{
+    [super viewWillAppear];
+    NSLog(@"WillAppear");
+}
+
+- (void)setTableName:(NSString *)tableName
+{
+    _tableName = tableName;
+    NSLog(@"Table name: %@", self.tableName);
 }
 
 @end

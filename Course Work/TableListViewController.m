@@ -7,6 +7,7 @@
 //
 
 #import "TableListViewController.h"
+#import "ContentViewController.h"
 #import "ocilib.h"
 #import "NSString+Oracle.h"
 #import "NSViewController+ErrorString.h"
@@ -14,6 +15,8 @@
 @interface TableListViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (nonatomic) IBOutlet NSTableView *tableView;
+@property (nonatomic) IBOutlet NSView *containerView;
+@property (nonatomic) IBOutlet ContentViewController *contentVC;
 
 @property (nonatomic) NSMutableArray<NSString *> *tableNames;
 
@@ -87,6 +90,11 @@
     [self.tableView scrollRowToVisible:0];
     
     [self.view.window endSheet:progressWC.window];
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    self.contentVC.tableName = self.tableNames[self.tableView.selectedRow];
 }
 
 
