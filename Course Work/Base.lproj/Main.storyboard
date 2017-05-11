@@ -513,7 +513,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="contentVC" destination="qon-bD-py1" id="xwE-e7-iOj"/>
                         <outlet property="tableView" destination="Upe-JO-goj" id="ksq-d4-TvV"/>
                     </connections>
                 </viewController>

@@ -16,7 +16,6 @@
 
 @property (nonatomic) IBOutlet NSTableView *tableView;
 @property (nonatomic) IBOutlet NSView *containerView;
-@property (nonatomic) IBOutlet ContentViewController *contentVC;
 
 @property (nonatomic) NSMutableArray<NSString *> *tableNames;
 
@@ -41,7 +40,7 @@
         return NO;
     }
     
-    [self.tableNames removeAllObjects];
+    self.tableNames = [NSMutableArray array];
     OCI_Resultset *rs = OCI_GetResultset(st);
     while (OCI_FetchNext(rs)) {
         NSString *table = [NSString stringWithOtext:OCI_GetString(rs, 1)];

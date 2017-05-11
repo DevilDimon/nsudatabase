@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ocilib.h"
+#import "ContentViewController.h"
 
 @interface TableListViewController : NSViewController
 
 @property (nonatomic, assign) OCI_Connection *conn;
+@property (nonatomic) ContentViewController *contentVC;
 
 @end

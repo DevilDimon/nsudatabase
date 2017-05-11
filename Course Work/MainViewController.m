@@ -25,20 +25,17 @@
 {
     if ([segue.destinationController isKindOfClass:[TableListViewController class]]) {
         self.tableListViewController = (TableListViewController *)segue.destinationController;
-        self.tableListViewController.conn = self.connection;
     }
     else if ([segue.destinationController isKindOfClass:[ContentViewController class]]) {
         self.contentViewController = (ContentViewController *)segue.destinationController;
-        self.contentViewController.conn = self.connection;
     }
+    self.tableListViewController.contentVC = self.contentViewController;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.splitView setPosition:200 ofDividerAtIndex:0];
-
-    
 }
 
 - (void)setConnection:(OCI_Connection *)connection

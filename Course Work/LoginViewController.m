@@ -19,7 +19,7 @@
 @property (nonatomic) IBOutlet NSTextField *loginTextField;
 @property (nonatomic) IBOutlet NSSecureTextField *passwordTextField;
 
-@property (nonatomic, assign) OCI_Connection *conn;
+@property (nonatomic) OCI_Connection *conn;
 
 @end
 

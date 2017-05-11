@@ -11,7 +11,7 @@
 
 @interface MainViewController : NSViewController
 
-@property (nonatomic, assign) OCI_Connection *connection;
+@property (nonatomic) OCI_Connection *connection;
 
 @end
 

@@ -12,5 +12,6 @@
 @interface NSString (Oracle)
 
 + (NSString *)stringWithOtext:(const otext *)string;
+- (const char *)otext;
 
 @end

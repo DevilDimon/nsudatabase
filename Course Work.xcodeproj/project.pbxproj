@@ -14,6 +14,7 @@
 		136184F51EC1CC1000CE0D56 /* TableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184F41EC1CC1000CE0D56 /* TableListViewController.m */; };
 		136184F91EC1CCD300CE0D56 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184F71EC1CCD300CE0D56 /* ContentViewController.m */; };
 		136184FD1EC1D54500CE0D56 /* NSString+Oracle.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184FC1EC1D54500CE0D56 /* NSString+Oracle.m */; };
+		139F03601EC4A13800AEB388 /* Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 139F035F1EC4A13800AEB388 /* Table.m */; };
 		13A2E7C41E8FD6E30063A476 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C31E8FD6E30063A476 /* AppDelegate.m */; };
 		13A2E7C71E8FD6E30063A476 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C61E8FD6E30063A476 /* main.m */; };
 		13A2E7CA1E8FD6E30063A476 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13A2E7C91E8FD6E30063A476 /* MainViewController.m */; };
@@ -40,6 +41,8 @@
 		136184F71EC1CCD300CE0D56 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 		136184FB1EC1D54500CE0D56 /* NSString+Oracle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Oracle.h"; sourceTree = "<group>"; };
 		136184FC1EC1D54500CE0D56 /* NSString+Oracle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Oracle.m"; sourceTree = "<group>"; };
+		139F035E1EC4A13800AEB388 /* Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
+		139F035F1EC4A13800AEB388 /* Table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Table.m; sourceTree = "<group>"; };
 		13A2E7BF1E8FD6E30063A476 /* Course Work.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Course Work.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13A2E7C21E8FD6E30063A476 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		13A2E7C31E8FD6E30063A476 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -171,6 +174,15 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		139F035D1EC4A11700AEB388 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				139F035E1EC4A13800AEB388 /* Table.h */,
+				139F035F1EC4A13800AEB388 /* Table.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		13A2E7B61E8FD6E30063A476 = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +203,7 @@
 		13A2E7C11E8FD6E30063A476 /* Course Work */ = {
 			isa = PBXGroup;
 			children = (
+				139F035D1EC4A11700AEB388 /* Model */,
 				136184EC1EC1C2AA00CE0D56 /* Categories */,
 				136184E31EC1893600CE0D56 /* WindowController */,
 				136184DF1EC17BBD00CE0D56 /* ViewController */,
@@ -401,6 +414,7 @@
 			files = (
 				136184E61EC1894E00CE0D56 /* MainWindowController.m in Sources */,
 				136184FD1EC1D54500CE0D56 /* NSString+Oracle.m in Sources */,
+				139F03601EC4A13800AEB388 /* Table.m in Sources */,
 				136184E21EC17BE500CE0D56 /* LoginViewController.m in Sources */,
 				136184F91EC1CCD300CE0D56 /* ContentViewController.m in Sources */,
 				13A2E7CA1E8FD6E30063A476 /* MainViewController.m in Sources */,

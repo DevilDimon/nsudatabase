@@ -12,7 +12,12 @@
 
 + (NSString *)stringWithOtext:(const otext *)string
 {
-    return [NSString stringWithCString:string encoding:NSUTF8StringEncoding];
+    return [NSString stringWithCString:string encoding:NSASCIIStringEncoding];
+}
+
+- (const char *)otext
+{
+    return [self cStringUsingEncoding:NSASCIIStringEncoding];
 }
 
 @end

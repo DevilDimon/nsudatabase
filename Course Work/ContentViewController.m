@@ -7,11 +7,14 @@
 //
 
 #import "ContentViewController.h"
+#import "Table.h"
 
 @interface ContentViewController ()
 
+@property (nonatomic) Table *table;
 
 @end
+
 
 @implementation ContentViewController
 
@@ -20,16 +23,12 @@
     NSLog(@"DidLoad");
 }
 
-- (void)viewWillAppear
-{
-    [super viewWillAppear];
-    NSLog(@"WillAppear");
-}
-
 - (void)setTableName:(NSString *)tableName
 {
     _tableName = tableName;
-    NSLog(@"Table name: %@", self.tableName);
+    _table = [[Table alloc] initWithName:_tableName connection:self.conn sql:nil];
+    [_table refresh];
+    NSLog(@"Refreshed");
 }
 
 @end
