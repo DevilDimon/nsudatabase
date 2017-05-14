@@ -10,6 +10,11 @@
 #import <OrderedDictionary.h>
 #import "NSString+Oracle.h"
 
+
+@interface Table ()
+
+@end
+
 @implementation Table
 
 - (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn sql:(NSString *)sql
@@ -58,16 +63,57 @@
     }
     OCI_Resultset *rs = OCI_GetResultset(st);
     
-    self.rows = [NSMutableArray array];
+    NSMutableArray *newRows = [NSMutableArray array];
     while (OCI_FetchNext(rs)) {
         NSMutableArray *row = [NSMutableArray arrayWithCapacity:self.columns.count];
         for (NSString *column in self.columns) {
             [row addObject:[NSString stringWithOtext:OCI_GetString2(rs, [column otext])]];
         }
-        [self.rows addObject:[row copy]];
+        [newRows addObject:[row copy]];
     }
     
+    self.rows = [newRows mutableCopy];
+    
     return YES;
+}
+
+- (BOOL)deleteRow:(NSInteger)row
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"DELETE FROM %@ WHERE ", self.name];
+    for (NSString *columnName in self.columns) {
+        NSString *value = self.rows[row][[self.columns indexOfKey:columnName]];
+        [sql appendFormat:@"%@ = %@ AND ", columnName,
+         [self formatForWhereClause:value type:self.columns[columnName]]];
+    }
+    
+    [sql deleteCharactersInRange:NSMakeRange(sql.length - 5, 5)];
+    
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        OCI_StatementFree(st);
+        return NO;
+    }
+    OCI_StatementFree(st);
+    OCI_Commit(self.conn);
+    
+    [self.rows removeObjectAtIndex:row];
+    
+    return YES;
+}
+
+- (NSString *)formatForWhereClause:(NSString *)string type:(NSString *)type
+{
+    if ([type isEqualToString:@"NUMBER"]) {
+        return string;
+    }
+    if ([type isEqualToString:@"VARCHAR2"]) {
+        return [NSString stringWithFormat:@"'%@'", string];
+    }
+    if ([type isEqualToString:@"DATE"]) {
+        return [NSString stringWithFormat:@"TO_DATE('%@')", string];
+    }
+    
+    return nil;
 }
 
 - (BOOL)isTypeSupported:(NSString *)type

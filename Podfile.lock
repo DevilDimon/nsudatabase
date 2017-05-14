@@ -1,0 +1,15 @@
+PODS:
+  - ACEView (0.0.5)
+  - OrderedDictionary (1.4)
+
+DEPENDENCIES:
+  - ACEView
+  - OrderedDictionary (~> 1.4)
+
+SPEC CHECKSUMS:
+  ACEView: cf3f665c61c8567d5dd04f395796342f58bad1a0
+  OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
+
+PODFILE CHECKSUM: 04931ab57cdaa545e266810f82736bf285b98be2
+
+COCOAPODS: 1.2.0

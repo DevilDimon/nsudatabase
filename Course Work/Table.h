@@ -20,5 +20,6 @@
 
 - (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn sql:(NSString *)sql;
 - (BOOL)refresh;
+- (BOOL)deleteRow:(NSInteger)row;
 
 @end

@@ -52,6 +52,13 @@
     
     
     NSTableView *tableView = [[NSTableView alloc] init];
+    
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Row Actions"];
+    [menu addItemWithTitle:@"Delete Row" action:@selector(deleteRow) keyEquivalent:@""];
+    tableView.menu = menu;
+    
+    tableView.usesAlternatingRowBackgroundColors = YES;
+    tableView.gridStyleMask = NSTableViewSolidHorizontalGridLineMask | NSTableViewSolidVerticalGridLineMask;
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"TextCellView" bundle:[NSBundle mainBundle]];
     [tableView registerNib:textNib forIdentifier:@"Text"];
     
@@ -69,7 +76,7 @@
         [tableView addTableColumn:column];
     }
     
-    [self.tableView.superview.superview removeFromSuperview];
+    [self.tableView.enclosingScrollView removeFromSuperview];
     
     self.tableView = tableView;
     self.tableView.delegate = self;
@@ -99,6 +106,18 @@
     }
     
     return nil;
+}
+
+- (void)deleteRow
+{
+    // TODO: loading wc, show alert on failure
+    NSInteger row = self.tableView.clickedRow;
+    if (row < 0) {
+        return;
+    }
+    
+    [self.table deleteRow:row];
+    
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
