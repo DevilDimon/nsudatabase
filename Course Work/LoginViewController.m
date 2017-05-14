@@ -26,6 +26,11 @@
 
 @implementation LoginViewController
 
+- (void)viewWillAppear
+{
+    self.view.window.initialFirstResponder = self.connectionTextField;
+}
+
 - (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowMainWindow"]) {

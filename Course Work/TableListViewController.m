@@ -70,14 +70,14 @@
     self.tableNames = [NSMutableArray array];
     
     NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
-    
     [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
     
     
     if (![self refresh]) {
         NSAlert *alert = [[NSAlert alloc] init];
         alert.alertStyle = NSAlertStyleCritical;
-        alert.messageText = @"Table Refresh Error";
+        alert.messageText = @"Table List Refresh Error";
         alert.informativeText = [self errorString];
         [alert runModal];
         

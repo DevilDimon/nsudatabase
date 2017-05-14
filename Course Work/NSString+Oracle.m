@@ -12,7 +12,7 @@
 
 + (NSString *)stringWithOtext:(const otext *)string
 {
-    return [NSString stringWithCString:string encoding:NSASCIIStringEncoding];
+    return [NSString stringWithCString:(string ? string : "NULL") encoding:NSASCIIStringEncoding];
 }
 
 - (const char *)otext

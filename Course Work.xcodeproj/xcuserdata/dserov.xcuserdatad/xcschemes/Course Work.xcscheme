@@ -61,6 +61,18 @@
             ReferencedContainer = "container:Course Work.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "TNS_ADMIN"
+            value = "/Users/dserov/Documents/nsu/db/oracle_home/network/admin"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "DYLD_LIBRARY_PATH"
+            value = "/usr/local/lib:/usr/local/lib/instantclient_11_2"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

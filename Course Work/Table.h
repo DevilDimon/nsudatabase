@@ -8,14 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "ocilib.h"
+#import <OrderedDictionary.h>
 
 @interface Table : NSObject
 
 @property (nonatomic) OCI_Connection *conn;
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *sql;
-@property (nonatomic) NSArray<NSDictionary<NSString *, NSValue *> *> *columns;
-@property (nonatomic) NSMutableArray<NSArray *> *rows;
+@property (nonatomic) OrderedDictionary<NSString *, NSString *> *columns;
+@property (nonatomic) NSMutableArray<NSArray<NSString *> *> *rows;
 
 - (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn sql:(NSString *)sql;
 - (BOOL)refresh;

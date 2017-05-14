@@ -7,6 +7,7 @@
 //
 
 #import "Table.h"
+#import <OrderedDictionary.h>
 #import "NSString+Oracle.h"
 
 @implementation Table
@@ -36,14 +37,13 @@
     
     int n = OCI_TypeInfoGetColumnCount(info);
     
-    NSMutableDictionary *newColumns = [NSMutableDictionary dictionary];
+    MutableOrderedDictionary *newColumns = [MutableOrderedDictionary dictionary];
     for (int i = 1; i <= n; i++) {
         OCI_Column *column = OCI_TypeInfoGetColumn(info, i);
         NSString *columnName = [NSString stringWithOtext:OCI_ColumnGetName(column)];
         NSString *columnType = [NSString stringWithOtext:OCI_ColumnGetSQLType(column)];
-        Class class = [self classFromDataType:columnType];
-        if (class) {
-            newColumns[columnName] = [NSValue value:&class withObjCType:@encode(Class)];
+        if ([self isTypeSupported:columnType]) {
+            newColumns[columnName] = columnType;
         }
     }
     
@@ -62,7 +62,7 @@
     while (OCI_FetchNext(rs)) {
         NSMutableArray *row = [NSMutableArray arrayWithCapacity:self.columns.count];
         for (NSString *column in self.columns) {
-            [row addObject:[self objectFromResultSet:rs column:column]];
+            [row addObject:[NSString stringWithOtext:OCI_GetString2(rs, [column otext])]];
         }
         [self.rows addObject:[row copy]];
     }
@@ -70,39 +70,15 @@
     return YES;
 }
 
-- (Class)classFromDataType:(NSString *)type
+- (BOOL)isTypeSupported:(NSString *)type
 {
-    if ([type isEqualToString:@"NUMBER"]) {
-        return [NSNumber class];
-    }
-    if ([type isEqualToString:@"VARCHAR2"]) {
-        return [NSString class];
-    }
-    if ([type isEqualToString:@"DATE"]) {
-        return [NSDate class];
-    }
+    static NSArray *supportedTypes;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        supportedTypes = @[@"NUMBER", @"VARCHAR2", @"DATE"];
+    });
     
-    return nil;
-}
-
-- (id)objectFromResultSet:(OCI_Resultset *)rs column:(NSString *)column
-{
-    const otext *o_column = [column otext];
-    NSString *type = [NSString stringWithOtext:OCI_ColumnGetSQLType(OCI_GetColumn2(rs, o_column))];
-    if ([type isEqualToString:@"NUMBER"]) {
-        return @(OCI_GetInt2(rs, o_column));
-    }
-    if ([type isEqualToString:@"VARCHAR2"]) {
-        return [NSString stringWithOtext:OCI_GetString2(rs, o_column)];
-    }
-    if ([type isEqualToString:@"DATE"]) {
-        OCI_Date *date = OCI_GetDate2(rs, o_column);
-        time_t time;
-        OCI_DateToCTime(date, NULL, &time);
-        return [NSDate dateWithTimeIntervalSince1970:time];
-    }
-    
-    return nil;
+    return [supportedTypes containsObject:type];
 }
 
 @end

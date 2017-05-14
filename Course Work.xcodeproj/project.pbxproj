@@ -24,6 +24,8 @@
 		13A2E8251E8FE0260063A476 /* libons.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2E7E71E8FD8810063A476 /* libons.dylib */; };
 		13A2E82C1E8FE0C50063A476 /* libclntsh.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2E7DE1E8FD8810063A476 /* libclntsh.dylib */; };
 		13A2E82D1E8FE0C50063A476 /* libclntshcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A2E7E01E8FD8810063A476 /* libclntshcore.dylib */; };
+		13CB31761EC7802B005D9E25 /* TextCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13CB31751EC7802B005D9E25 /* TextCellView.xib */; };
+		4C29296A0BFDC189698F8279 /* libPods-Course Work.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BFD191DEA7D6EFA411899C /* libPods-Course Work.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +122,10 @@
 		13A2E81E1E8FD8810063A476 /* xstreams.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = xstreams.jar; sourceTree = "<group>"; };
 		13A2E81F1E8FD8A70063A476 /* ocilib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ocilib.h; path = ../../../../../../usr/local/include/ocilib.h; sourceTree = "<group>"; };
 		13A2E8301E90061A0063A476 /* ocilib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ocilib.h; sourceTree = "<group>"; };
+		13CB31751EC7802B005D9E25 /* TextCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCellView.xib; sourceTree = "<group>"; };
+		35BFD191DEA7D6EFA411899C /* libPods-Course Work.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Course Work.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41A7D808D4B838C7E990A5CB /* Pods-Course Work.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Course Work.release.xcconfig"; path = "Pods/Target Support Files/Pods-Course Work/Pods-Course Work.release.xcconfig"; sourceTree = "<group>"; };
+		5A982D07B40FEBABEFEEF2D5 /* Pods-Course Work.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Course Work.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Course Work/Pods-Course Work.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,7 @@
 				13A2E82D1E8FE0C50063A476 /* libclntshcore.dylib in Frameworks */,
 				13A2E8231E8FE0260063A476 /* libnnz12.dylib in Frameworks */,
 				13A2E8251E8FE0260063A476 /* libons.dylib in Frameworks */,
+				4C29296A0BFDC189698F8279 /* libPods-Course Work.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,13 +181,13 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		139F035D1EC4A11700AEB388 /* Model */ = {
+		139F035D1EC4A11700AEB388 /* Database */ = {
 			isa = PBXGroup;
 			children = (
 				139F035E1EC4A13800AEB388 /* Table.h */,
 				139F035F1EC4A13800AEB388 /* Table.m */,
 			);
-			name = Model;
+			name = Database;
 			sourceTree = "<group>";
 		};
 		13A2E7B61E8FD6E30063A476 = {
@@ -189,6 +196,7 @@
 				13A2E7C11E8FD6E30063A476 /* Course Work */,
 				13A2E7C01E8FD6E30063A476 /* Products */,
 				13A2E7D61E8FD8670063A476 /* Frameworks */,
+				60682D3AF4440D05177F1CF1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -203,7 +211,8 @@
 		13A2E7C11E8FD6E30063A476 /* Course Work */ = {
 			isa = PBXGroup;
 			children = (
-				139F035D1EC4A11700AEB388 /* Model */,
+				13CB31771EC78675005D9E25 /* TableCellView */,
+				139F035D1EC4A11700AEB388 /* Database */,
 				136184EC1EC1C2AA00CE0D56 /* Categories */,
 				136184E31EC1893600CE0D56 /* WindowController */,
 				136184DF1EC17BBD00CE0D56 /* ViewController */,
@@ -232,6 +241,7 @@
 				13A2E81F1E8FD8A70063A476 /* ocilib.h */,
 				13A2E7D91E8FD8810063A476 /* instantclient_12_1 */,
 				13A2E7D71E8FD8670063A476 /* libclntsh.dylib.12.1 */,
+				35BFD191DEA7D6EFA411899C /* libPods-Course Work.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -341,6 +351,23 @@
 			path = include;
 			sourceTree = "<group>";
 		};
+		13CB31771EC78675005D9E25 /* TableCellView */ = {
+			isa = PBXGroup;
+			children = (
+				13CB31751EC7802B005D9E25 /* TextCellView.xib */,
+			);
+			name = TableCellView;
+			sourceTree = "<group>";
+		};
+		60682D3AF4440D05177F1CF1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A982D07B40FEBABEFEEF2D5 /* Pods-Course Work.debug.xcconfig */,
+				41A7D808D4B838C7E990A5CB /* Pods-Course Work.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,9 +375,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13A2E7D31E8FD6E30063A476 /* Build configuration list for PBXNativeTarget "Course Work" */;
 			buildPhases = (
+				CE454CCD883049397773B78B /* [CP] Check Pods Manifest.lock */,
 				13A2E7BB1E8FD6E30063A476 /* Sources */,
 				13A2E7BC1E8FD6E30063A476 /* Frameworks */,
 				13A2E7BD1E8FD6E30063A476 /* Resources */,
+				00285A79F8850667ADE85DF1 /* [CP] Embed Pods Frameworks */,
+				A90E559B65BF12BDA4C02497 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -401,11 +431,60 @@
 			buildActionMask = 2147483647;
 			files = (
 				13A2E7CC1E8FD6E30063A476 /* Assets.xcassets in Resources */,
+				13CB31761EC7802B005D9E25 /* TextCellView.xib in Resources */,
 				13A2E7CF1E8FD6E30063A476 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00285A79F8850667ADE85DF1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Course Work/Pods-Course Work-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A90E559B65BF12BDA4C02497 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Course Work/Pods-Course Work-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE454CCD883049397773B78B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		13A2E7BB1E8FD6E30063A476 /* Sources */ = {
@@ -531,6 +610,7 @@
 		};
 		13A2E7D41E8FD6E30063A476 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A982D07B40FEBABEFEEF2D5 /* Pods-Course Work.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -540,10 +620,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
 					/usr/local/lib/instantclient_11_2,
+					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
 					"-locilib",
 					"-lclntsh",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.nsu.fit.g14201.dserov.Course-Work";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -554,6 +636,7 @@
 		};
 		13A2E7D51E8FD6E30063A476 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41A7D808D4B838C7E990A5CB /* Pods-Course Work.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -563,10 +646,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
 					/usr/local/lib/instantclient_11_2,
+					"$(inherited)",
 				);
 				OTHER_LDFLAGS = (
 					"-locilib",
 					"-lclntsh",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.nsu.fit.g14201.dserov.Course-Work";
 				PRODUCT_NAME = "$(TARGET_NAME)";
