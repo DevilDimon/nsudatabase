@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "TableListViewController.h"
 #import "ContentViewController.h"
+#import "CodeViewController.h"
 
 @interface MainViewController () <NSSplitViewDelegate>
 

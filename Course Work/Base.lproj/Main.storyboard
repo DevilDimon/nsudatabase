@@ -344,11 +344,23 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="MainWindowController" id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="MainWindowController" id="B8D-0N-5wS" customClass="MainWindowController" sceneMemberID="viewController">
                     <window key="window" title="Oracle Database Client" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <toolbar key="toolbar" implicitIdentifier="A227A713-C189-41F3-AE2B-54CFFD0F5A4F" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="Q4O-aR-SeW">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="0FA0DD0B-5063-464F-BFBE-816A1A4B3150" label="Manual Query" paletteLabel="Manual Query" image="Code" id="XhR-gP-9cl">
+                                    <connections>
+                                        <segue destination="q8l-rr-04p" kind="modal" identifier="CodeSegue" id="75M-hx-akT"/>
+                                    </connections>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="XhR-gP-9cl"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -357,6 +369,63 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="184"/>
+        </scene>
+        <!--Code-->
+        <scene sceneID="eUZ-Fy-DeG">
+            <objects>
+                <viewController title="Code" id="q8l-rr-04p" customClass="CodeViewController" sceneMemberID="viewController">
+                    <view key="view" id="yqv-mK-qii">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="i2p-IM-f3L" customClass="MGSFragariaView">
+                                <rect key="frame" x="20" y="61" width="410" height="219"/>
+                            </customView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RMV-kh-Dhe">
+                                <rect key="frame" x="351" y="13" width="89" height="32"/>
+                                <buttonCell key="cell" type="push" title="Execute" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iz4-ST-9FB">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onExecute:" target="q8l-rr-04p" id="QOW-UA-B0a"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s2R-hJ-pk0">
+                                <rect key="frame" x="270" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nxb-cP-v6X">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="q8l-rr-04p" id="N02-8Y-z5a"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="i2p-IM-f3L" firstAttribute="top" secondItem="yqv-mK-qii" secondAttribute="top" constant="20" symbolic="YES" id="4qc-2G-OPv"/>
+                            <constraint firstAttribute="trailing" secondItem="i2p-IM-f3L" secondAttribute="trailing" constant="20" symbolic="YES" id="Ld9-i7-dff"/>
+                            <constraint firstAttribute="bottom" secondItem="s2R-hJ-pk0" secondAttribute="bottom" constant="20" id="MFV-F8-hMW"/>
+                            <constraint firstAttribute="trailing" secondItem="RMV-kh-Dhe" secondAttribute="trailing" constant="16" id="cDJ-VO-V0H"/>
+                            <constraint firstItem="i2p-IM-f3L" firstAttribute="leading" secondItem="yqv-mK-qii" secondAttribute="leading" constant="20" symbolic="YES" id="jbL-wq-Q63"/>
+                            <constraint firstItem="s2R-hJ-pk0" firstAttribute="top" secondItem="i2p-IM-f3L" secondAttribute="bottom" constant="20" symbolic="YES" id="qSB-YU-r4Q"/>
+                            <constraint firstItem="RMV-kh-Dhe" firstAttribute="leading" secondItem="s2R-hJ-pk0" secondAttribute="trailing" constant="11" id="sVk-dz-aav"/>
+                            <constraint firstAttribute="bottom" secondItem="RMV-kh-Dhe" secondAttribute="bottom" constant="20" id="xEr-pe-fmw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="codeView" destination="i2p-IM-f3L" id="fxb-2H-cTF"/>
+                    </connections>
+                </viewController>
+                <customObject id="ish-96-mDG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="684" y="169"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -433,6 +502,7 @@
                     </connections>
                 </customObject>
                 <customObject id="9yb-0e-ftH" customClass="ContentViewController"/>
+                <customObject id="bUK-IE-sAv"/>
             </objects>
             <point key="canvasLocation" x="877" y="1099"/>
         </scene>
@@ -538,4 +608,7 @@
             <point key="canvasLocation" x="1137" y="1684"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Code" width="64" height="64"/>
+    </resources>
 </document>

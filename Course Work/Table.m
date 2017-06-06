@@ -15,6 +15,7 @@
 
 @end
 
+
 @implementation Table
 
 - (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn sql:(NSString *)sql
@@ -69,7 +70,7 @@
         for (NSString *column in self.columns) {
             [row addObject:[NSString stringWithOtext:OCI_GetString2(rs, [column otext])]];
         }
-        [newRows addObject:[row copy]];
+        [newRows addObject:row];
     }
     
     self.rows = [newRows mutableCopy];
@@ -79,7 +80,6 @@
 
 - (BOOL)deleteRow:(NSInteger)row
 {
-    OCI_Statement *st = OCI_StatementCreate(self.conn);
     NSMutableString *sql = [NSMutableString stringWithFormat:@"DELETE FROM %@ WHERE ", self.name];
     for (NSString *columnName in self.columns) {
         NSString *value = self.rows[row][[self.columns indexOfKey:columnName]];
@@ -89,14 +89,41 @@
     
     [sql deleteCharactersInRange:NSMakeRange(sql.length - 5, 5)];
     
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
     if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
         OCI_StatementFree(st);
         return NO;
     }
     OCI_StatementFree(st);
-    OCI_Commit(self.conn);
     
     [self.rows removeObjectAtIndex:row];
+    
+    return YES;
+}
+
+- (BOOL)updateRow:(NSInteger)row columnName:(NSString *)column newValue:(NSString *)value
+{
+    NSString *formattedValue = [self formatForWhereClause:value type:self.columns[column]];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"UPDATE %@ SET %@ = %@ WHERE ",
+        self.name, column, formattedValue];
+    for (NSString *columnName in self.columns) {
+        NSString *curValue = self.rows[row][[self.columns indexOfKey:columnName]];
+        [sql appendFormat:@"%@ = %@ AND ", columnName,
+         [self formatForWhereClause:curValue type:self.columns[columnName]]];
+    }
+    
+    [sql deleteCharactersInRange:NSMakeRange(sql.length - 5, 5)];
+    
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        OCI_StatementFree(st);
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    NSInteger col = [self.columns indexOfKey:column];
+    self.rows[row][col] = value;
     
     return YES;
 }

@@ -15,6 +15,8 @@
 @property (nonatomic) Table *table;
 @property (nonatomic) NSTableView *tableView;
 
+@property (nonatomic) NSTableColumn *currentColumn;
+
 @end
 
 
@@ -30,6 +32,31 @@
 
     [self onRefreshPressed:nil];
 }
+
+- (NSString *)identifierForType:(NSString *)type
+{
+    if ([type isEqualToString:@"NUMBER"] || [type isEqualToString:@"VARCHAR2"]) {
+        return @"Text";
+    } else if([type isEqualToString:@"DATE"]) {
+        return @"Date";
+    }
+    
+    return nil;
+}
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    NSTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+    cell.textField.stringValue = self.table.rows[row][[self.table.columns indexOfKey:tableColumn.title]];
+    
+    return cell;
+}
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return self.table.rows.count;
+}
+
 
 - (IBAction)onRefreshPressed:(id)sender
 {
@@ -60,7 +87,9 @@
     tableView.usesAlternatingRowBackgroundColors = YES;
     tableView.gridStyleMask = NSTableViewSolidHorizontalGridLineMask | NSTableViewSolidVerticalGridLineMask;
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"TextCellView" bundle:[NSBundle mainBundle]];
+    NSNib *dateNib = [[NSNib alloc] initWithNibNamed:@"DateCellView" bundle:[NSBundle mainBundle]];
     [tableView registerNib:textNib forIdentifier:@"Text"];
+    [tableView registerNib:dateNib forIdentifier:@"Date"];
     
     for (NSString *columnName in self.table.columns) {
         NSString *identifier = [self identifierForType:self.table.columns[columnName]];
@@ -69,9 +98,8 @@
         }
         
         NSTableColumn *column = [[NSTableColumn alloc] initWithIdentifier:identifier];
-        column.headerCell.title = columnName;
+//        column.headerCell.title = columnName;
         column.title = columnName;
-//        column.width = columnWidth;
         
         [tableView addTableColumn:column];
     }
@@ -83,7 +111,7 @@
     self.tableView.dataSource = self;
     [self.tableView reloadData];
     
-//    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    //    self.view.translatesAutoresizingMaskIntoConstraints = NO;
     NSScrollView *scrollView = [[NSScrollView alloc] init];
     scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     scrollView.documentView = self.tableView;
@@ -99,38 +127,66 @@
     [self.view.window endSheet:progressWC.window];
 }
 
-- (NSString *)identifierForType:(NSString *)type
-{
-    if ([type isEqualToString:@"NUMBER"] || [type isEqualToString:@"VARCHAR2"] || [type isEqualToString:@"DATE"]) {
-        return @"Text";
-    }
-    
-    return nil;
-}
-
 - (void)deleteRow
 {
-    // TODO: loading wc, show alert on failure
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
     NSInteger row = self.tableView.clickedRow;
     if (row < 0) {
+        [self.view.window endSheet:progressWC.window];
         return;
     }
     
-    [self.table deleteRow:row];
+    if (![self.table deleteRow:row]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.alertStyle = NSAlertStyleCritical;
+        alert.messageText = @"Table Refresh Error";
+        alert.informativeText = [self errorString];
+        [alert runModal];
+        
+        [self.view.window endSheet:progressWC.window];
+        return;
+    }
+    
+    [self.tableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:row]
+        withAnimation:NSTableViewAnimationEffectFade];
+    
+    [self.view.window endSheet:progressWC.window];
     
 }
 
-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+- (IBAction)onTextEdited:(id)sender
 {
-    NSTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-    cell.textField.stringValue = self.table.rows[row][[self.table.columns indexOfKey:tableColumn.title]];
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main"
+        bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
     
-    return cell;
-}
-
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
-{
-    return self.table.rows.count;
+    NSInteger row = [self.tableView rowForView:sender];
+    NSInteger column = [self.tableView columnForView:sender];
+    if (row < 0 || column < 0) {
+        [self.view.window endSheet:progressWC.window];
+        return;
+    }
+    
+    NSTextField *textField = (NSTextField *)sender;
+    
+    if (![self.table updateRow:row columnName:self.tableView.tableColumns[column].title
+            newValue:textField.stringValue]) {
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.alertStyle = NSAlertStyleCritical;
+        alert.messageText = @"Table Update Error";
+        alert.informativeText = [self errorString];
+        [alert runModal];
+    }
+    
+    [self.tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
+        columnIndexes:[NSIndexSet indexSetWithIndex:column]];
+    
+    [self.view.window endSheet:progressWC.window];
 }
 
 @end

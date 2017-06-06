@@ -66,6 +66,8 @@
         return;
     }
     
+    OCI_SetAutoCommit(self.conn, TRUE);
+    
     [self.view.window endSheet:progressWC.window];
     [self performSegueWithIdentifier:@"ShowMainWindow" sender:sender];
     [self.view.window close];

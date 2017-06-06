@@ -1,15 +1,26 @@
 PODS:
-  - ACEView (0.0.5)
+  - Fragaria (1.0.2):
+    - Fragaria/unicode (= 1.0.2)
+  - Fragaria/unicode (1.0.2)
   - OrderedDictionary (1.4)
 
 DEPENDENCIES:
-  - ACEView
+  - Fragaria (from `Fragaria.podspec.json`)
   - OrderedDictionary (~> 1.4)
 
+EXTERNAL SOURCES:
+  Fragaria:
+    :podspec: Fragaria.podspec.json
+
+CHECKOUT OPTIONS:
+  Fragaria:
+    :commit: 8794cd8867e1d032374525cb54b8d374fd8a5c58
+    :git: https://github.com/bitstadium/Fragaria.git
+
 SPEC CHECKSUMS:
-  ACEView: cf3f665c61c8567d5dd04f395796342f58bad1a0
+  Fragaria: 02606519a1f3d87f203929f9e9ebf0290f987372
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
 
-PODFILE CHECKSUM: 04931ab57cdaa545e266810f82736bf285b98be2
+PODFILE CHECKSUM: e816f5416a3d8a5ab38f41692f35102cf439e2fe
 
 COCOAPODS: 1.2.0

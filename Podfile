@@ -7,6 +7,5 @@ target 'Course Work' do
 
   # Pods for Course Work
   pod 'OrderedDictionary', '~> 1.4'
-  pod 'ACEView'
-
+  pod 'Fragaria', :podspec => 'Fragaria.podspec.json', :inhibit_warnings => true
 end
