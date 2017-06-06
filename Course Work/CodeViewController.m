@@ -9,6 +9,7 @@
 #import "CodeViewController.h"
 #import <Fragaria.h>
 #import "NSString+Oracle.h"
+#import "NSViewController+ErrorString.h"
 
 @interface CodeViewController ()
 
@@ -27,8 +28,25 @@
 
 - (IBAction)onExecute:(id)sender
 {
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main"
+            bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
     OCI_Statement *st = OCI_StatementCreate(self.conn);
-    OCI_ExecuteStmt(st, [self.codeView.textView.string otext]);
+    
+    if (OCI_ExecuteStmt(st, [self.codeView.textView.string otext]) != TRUE) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.alertStyle = NSAlertStyleCritical;
+        alert.messageText = @"Table Update Error";
+        alert.informativeText = [self errorString];
+        [alert runModal];
+    }
+    else {
+        [self dismissController:nil];
+    }
+    
+    [self.view.window endSheet:progressWC.window];
     OCI_StatementFree(st);
 }
 
