@@ -68,7 +68,21 @@
     while (OCI_FetchNext(rs)) {
         NSMutableArray *row = [NSMutableArray arrayWithCapacity:self.columns.count];
         for (NSString *column in self.columns) {
-            [row addObject:[NSString stringWithOtext:OCI_GetString2(rs, [column otext])]];
+            if ([self.columns[column] isEqualToString:@"DATE"]) {
+                if (OCI_IsNull2(rs, [column otext])) {
+                    [row addObject:[NSNull null]];
+                    continue;
+                }
+                
+                OCI_Date *date = OCI_GetDate2(rs, [column otext]);
+                time_t pt;
+                OCI_DateToCTime(date, NULL, &pt);
+                NSDate *nsdate = [NSDate dateWithTimeIntervalSince1970:pt];
+                [row addObject:nsdate];
+            }
+            else {
+                [row addObject:[NSString stringWithOtext:OCI_GetString2(rs, [column otext])]];
+            }
         }
         [newRows addObject:row];
     }
@@ -101,7 +115,7 @@
     return YES;
 }
 
-- (BOOL)updateRow:(NSInteger)row columnName:(NSString *)column newValue:(NSString *)value
+- (BOOL)updateRow:(NSInteger)row columnName:(NSString *)column newValue:(id)value
 {
     NSString *formattedValue = [self formatForWhereClause:value type:self.columns[column]];
     NSMutableString *sql = [NSMutableString stringWithFormat:@"UPDATE %@ SET %@ = %@ WHERE ",
@@ -128,16 +142,22 @@
     return YES;
 }
 
-- (NSString *)formatForWhereClause:(NSString *)string type:(NSString *)type
+- (NSString *)formatForWhereClause:(id)value type:(NSString *)type
 {
     if ([type isEqualToString:@"NUMBER"]) {
-        return string;
+        return value;
     }
     if ([type isEqualToString:@"VARCHAR2"]) {
-        return [NSString stringWithFormat:@"'%@'", string];
+        return [NSString stringWithFormat:@"'%@'", value];
     }
     if ([type isEqualToString:@"DATE"]) {
-        return [NSString stringWithFormat:@"TO_DATE('%@')", string];
+        NSDate *date = (NSDate *)value;
+        OCI_Date *ociDate = OCI_DateCreate(self.conn);
+        OCI_DateFromCTime(ociDate, NULL, [date timeIntervalSince1970]);
+        otext string[256];
+        otext *format = "YYYY-MM-DD HH24:MI:SS";
+        OCI_DateToText(ociDate, format, 256, string);
+        return [NSString stringWithFormat:@"TO_DATE('%s', '%s')", string, format];
     }
     
     return nil;

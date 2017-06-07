@@ -10,4 +10,6 @@
 
 @interface DateCellView : NSTableCellView
 
+@property (nonatomic) IBOutlet NSDatePicker *datePicker;
+
 @end

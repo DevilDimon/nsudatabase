@@ -6,27 +6,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="ContentViewController"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <tableCellView identifier="Date" id="ZW5-jo-cTj" customClass="DateCellView">
-            <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+            <rect key="frame" x="0.0" y="0.0" width="143" height="22"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cd-Sf-Rrt">
-                    <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="x0a-LJ-p6L">
+                <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zMi-Ab-Fhk">
+                    <rect key="frame" x="0.0" y="0.0" width="143" height="22"/>
+                    <datePickerCell key="cell" alignment="left" drawsBackground="NO" datePickerStyle="textField" id="Y0c-b9-wId">
                         <font key="font" metaFont="system"/>
+                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
+                        <datePickerElements key="datePickerElements" year="YES" month="YES" day="YES" hour="YES" minute="YES" second="YES"/>
+                    </datePickerCell>
+                    <connections>
+                        <action selector="onDateChanged:" target="-2" id="Qfv-2g-6mM"/>
+                    </connections>
+                </datePicker>
             </subviews>
+            <constraints>
+                <constraint firstItem="zMi-Ab-Fhk" firstAttribute="leading" secondItem="ZW5-jo-cTj" secondAttribute="leading" id="GSj-Bu-Hqh"/>
+                <constraint firstAttribute="bottom" secondItem="zMi-Ab-Fhk" secondAttribute="bottom" id="KCU-PQ-8cz"/>
+                <constraint firstAttribute="trailing" secondItem="zMi-Ab-Fhk" secondAttribute="trailing" id="ULC-VO-K7T"/>
+                <constraint firstItem="zMi-Ab-Fhk" firstAttribute="top" secondItem="ZW5-jo-cTj" secondAttribute="top" id="YZb-yG-aEp"/>
+            </constraints>
             <connections>
-                <outlet property="textField" destination="0cd-Sf-Rrt" id="jw5-Pz-O1I"/>
+                <outlet property="datePicker" destination="zMi-Ab-Fhk" id="RgM-zP-PGe"/>
             </connections>
-            <point key="canvasLocation" x="122" y="46"/>
+            <point key="canvasLocation" x="143.5" y="45.5"/>
         </tableCellView>
     </objects>
 </document>

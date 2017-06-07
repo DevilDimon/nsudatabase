@@ -9,6 +9,7 @@
 #import "ContentViewController.h"
 #import "Table.h"
 #import "NSViewController+ErrorString.h"
+#import "DateCellView.h"
 
 @interface ContentViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
@@ -46,10 +47,19 @@
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    NSTableCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-    cell.textField.stringValue = self.table.rows[row][[self.table.columns indexOfKey:tableColumn.title]];
+    id obj = self.table.rows[row][[self.table.columns indexOfKey:tableColumn.title]];
+    if ([tableColumn.identifier isEqualToString:@"Date"] && obj != [NSNull null]) {
+        DateCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+        cell.datePicker.dateValue = obj;
+        
+        return cell;
+    }
+    else {
+        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"Text" owner:self];
+        cell.textField.stringValue = (obj != [NSNull null] ? obj : @"NULL");
     
-    return cell;
+        return cell;
+    }
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
@@ -85,7 +95,12 @@
     tableView.menu = menu;
     
     tableView.usesAlternatingRowBackgroundColors = YES;
-    tableView.gridStyleMask = NSTableViewSolidHorizontalGridLineMask | NSTableViewSolidVerticalGridLineMask;
+    tableView.gridStyleMask = NSTableViewSolidHorizontalGridLineMask |
+        NSTableViewSolidVerticalGridLineMask;
+    /*
+    tableView.target = self;
+    tableView.action = @selector(onClick:);
+     */
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"TextCellView" bundle:[NSBundle mainBundle]];
     NSNib *dateNib = [[NSNib alloc] initWithNibNamed:@"DateCellView" bundle:[NSBundle mainBundle]];
     [tableView registerNib:textNib forIdentifier:@"Text"];
@@ -187,6 +202,39 @@
         columnIndexes:[NSIndexSet indexSetWithIndex:column]];
     
     [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onDateChanged:(id)sender
+{
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main"
+        bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    NSInteger row = [self.tableView rowForView:sender];
+    NSInteger column = [self.tableView columnForView:sender];
+    if (row < 0 || column < 0) {
+        [self.view.window endSheet:progressWC.window];
+        return;
+    }
+    
+    NSDatePicker *datePicker = (NSDatePicker *)sender;
+    
+    if (![self.table updateRow:row columnName:self.tableView.tableColumns[column].title
+        newValue:datePicker.dateValue]) {
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.alertStyle = NSAlertStyleCritical;
+        alert.messageText = @"Table Update Error";
+        alert.informativeText = [self errorString];
+        [alert runModal];
+    }
+    
+    [self.tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
+                              columnIndexes:[NSIndexSet indexSetWithIndex:column]];
+    
+    [self.view.window endSheet:progressWC.window];
+    
 }
 
 @end

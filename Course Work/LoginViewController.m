@@ -10,6 +10,7 @@
 #import "MainWindowController.h"
 #import "MainViewController.h"
 #import "NSViewController+ErrorString.h"
+#import "NSString+Oracle.h"
 #import "AppDelegate.h"
 #import "ocilib.h"
 

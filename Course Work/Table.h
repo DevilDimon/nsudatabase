@@ -16,11 +16,11 @@
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *sql;
 @property (nonatomic) OrderedDictionary<NSString *, NSString *> *columns;
-@property (nonatomic) NSMutableArray<NSMutableArray<NSString *> *> *rows;
+@property (nonatomic) NSMutableArray<NSMutableArray *> *rows;
 
 - (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn sql:(NSString *)sql;
 - (BOOL)refresh;
 - (BOOL)deleteRow:(NSInteger)row;
-- (BOOL)updateRow:(NSInteger)row columnName:(NSString *)column newValue:(NSString *)value;
+- (BOOL)updateRow:(NSInteger)row columnName:(NSString *)column newValue:(id)value;
 
 @end
