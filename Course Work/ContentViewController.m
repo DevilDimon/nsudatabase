@@ -92,6 +92,7 @@
     
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Row Actions"];
     [menu addItemWithTitle:@"Delete Row" action:@selector(deleteRow) keyEquivalent:@""];
+    [menu addItemWithTitle:@"Set as NULL" action:@selector(nullify) keyEquivalent:@""];
     tableView.menu = menu;
     
     tableView.usesAlternatingRowBackgroundColors = YES;
@@ -170,6 +171,37 @@
     
     [self.view.window endSheet:progressWC.window];
     
+}
+
+- (void)nullify
+{
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    NSInteger row = self.tableView.clickedRow;
+    NSInteger column = self.tableView.clickedColumn;
+    if (row < 0 || column < 0) {
+        [self.view.window endSheet:progressWC.window];
+        return;
+    }
+    
+    if (![self.table updateRow:row columnName:self.tableView.tableColumns[column].title newValue:nil]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.alertStyle = NSAlertStyleCritical;
+        alert.messageText = @"Table Refresh Error";
+        alert.informativeText = [self errorString];
+        [alert runModal];
+        
+        [self.view.window endSheet:progressWC.window];
+        return;
+    }
+    
+    [self.tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
+        columnIndexes:[NSIndexSet indexSetWithIndex:column]];
+    
+    [self.view.window endSheet:progressWC.window];
+
 }
 
 - (IBAction)onTextEdited:(id)sender

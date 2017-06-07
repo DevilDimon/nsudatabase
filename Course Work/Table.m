@@ -137,13 +137,16 @@
     OCI_StatementFree(st);
     
     NSInteger col = [self.columns indexOfKey:column];
-    self.rows[row][col] = value;
+    self.rows[row][col] = value ?: @"NULL";
     
     return YES;
 }
 
 - (NSString *)formatForWhereClause:(id)value type:(NSString *)type
 {
+    if (!value) {
+        return @"NULL";
+    }
     if ([type isEqualToString:@"NUMBER"]) {
         return value;
     }
