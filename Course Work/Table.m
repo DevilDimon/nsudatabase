@@ -329,4 +329,36 @@ static NSString *const VarcharLimit = @"64";
     return YES;
 }
 
+- (BOOL)addAttribute
+{
+    static NSUInteger attributeNum = 0;
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSString *sql = [NSString stringWithFormat:@"ALTER TABLE %@ ADD (%@_attrib_%lu NUMBER)",
+        self.name, self.name, (unsigned long)attributeNum++];
+    
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    return [self refresh];
+}
+
+- (BOOL)removeAttribute:(NSString *)attribute
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSString *sql = [NSString stringWithFormat:@"ALTER TABLE %@ DROP COLUMN %@", self.name,
+        attribute];
+    
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    return [self refresh];
+}
+
+
 @end

@@ -71,18 +71,7 @@
             }
             return cell;
         }
-        if ([tableColumn.identifier isEqualToString:@"UniqueColumn"]) {
-            CheckCellView *cell = [tableView makeViewWithIdentifier:@"UniqueCell" owner:self];
-            cell.checkbox.state = NSOffState;
-            return cell;
-        }
-        if ([tableColumn.identifier isEqualToString:@"PrimaryKeyColumn"]) {
-            CheckCellView *cell = [tableView makeViewWithIdentifier:@"PrimaryKeyCell" owner:self];
-            cell.checkbox.state = NSOffState;
-            return cell;
-        }
     }
-    
     
     return nil;
 }
@@ -115,6 +104,45 @@
         [self.table refresh];
         [self refresh];
     }
+    
+    [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onAddAttribute:(id)sender
+{
+    if (!self.table) {
+        return;
+    }
+    
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    [self.table addAttribute];
+    [self refresh];
+    
+    [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onRemoveAttribute:(id)sender
+{
+    if (!self.table) {
+        return;
+    }
+    
+    if (self.constraintsTableView.selectedRow < 0) {
+        return;
+    }
+    
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    NSInteger row = self.constraintsTableView.selectedRow;
+    NSString *name = [self.table.columns keyAtIndex:row];
+    
+    [self.table removeAttribute:name];
+    [self refresh];
     
     [self.view.window endSheet:progressWC.window];
 }

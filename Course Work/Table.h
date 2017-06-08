@@ -30,5 +30,7 @@
 - (BOOL)alterAttributeName:(NSString *)attribute newName:(NSString *)newName;
 - (BOOL)alterAttributeType:(NSString *)attribute newType:(NSString *)type;
 - (BOOL)alterAttributeNullability:(NSString *)attribute nullability:(BOOL)nullability;
+- (BOOL)addAttribute;
+- (BOOL)removeAttribute:(NSString *)attribute;
 
 @end
