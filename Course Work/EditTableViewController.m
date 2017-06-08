@@ -130,7 +130,7 @@
         return;
     }
     
-    if (self.constraintsTableView.selectedRow < 0) {
+    if (self.constraintsTableView.selectedRowIndexes.count <= 0) {
         return;
     }
     
@@ -138,10 +138,17 @@
     [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
     [progressWC.window makeKeyWindow];
     
-    NSInteger row = self.constraintsTableView.selectedRow;
-    NSString *name = [self.table.columns keyAtIndex:row];
+    NSMutableArray *names = [NSMutableArray array];
+    [self.constraintsTableView.selectedRowIndexes
+     enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
+         NSString *name = [self.table.columns keyAtIndex:index];
+         [names addObject:name];
+    }];
     
-    [self.table removeAttribute:name];
+    for (NSString *name in names) {
+        [self.table removeAttribute:name];
+    }
+    
     [self refresh];
     
     [self.view.window endSheet:progressWC.window];

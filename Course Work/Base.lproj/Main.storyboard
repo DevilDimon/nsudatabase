@@ -525,17 +525,17 @@ Gw
             <objects>
                 <viewController title="Edit Table" storyboardIdentifier="EditTableViewController" id="5I6-dv-OPl" customClass="EditTableViewController" sceneMemberID="viewController">
                     <view key="view" id="jBh-ms-faD">
-                        <rect key="frame" x="0.0" y="0.0" width="595" height="462"/>
+                        <rect key="frame" x="0.0" y="0.0" width="595" height="568"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="27" horizontalPageScroll="10" verticalLineScroll="27" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XsS-8M-Q5b">
-                                <rect key="frame" x="0.0" y="30" width="595" height="394"/>
+                                <rect key="frame" x="0.0" y="30" width="595" height="500"/>
                                 <clipView key="contentView" id="h8l-zc-MSf">
-                                    <rect key="frame" x="1" y="0.0" width="593" height="393"/>
+                                    <rect key="frame" x="1" y="0.0" width="593" height="499"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" headerView="dkq-kV-aN8" viewBased="YES" id="LAq-g9-dJ7">
-                                            <rect key="frame" x="0.0" y="0.0" width="593" height="370"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" headerView="dkq-kV-aN8" viewBased="YES" id="LAq-g9-dJ7">
+                                            <rect key="frame" x="0.0" y="0.0" width="593" height="476"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="10"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -690,7 +690,7 @@ Gw
                                 </tableHeaderView>
                             </scrollView>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-2k-viy">
-                                <rect key="frame" x="20" y="432" width="110" height="22"/>
+                                <rect key="frame" x="20" y="538" width="110" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="2qt-bU-NNm"/>
                                 </constraints>
@@ -751,7 +751,7 @@ Gw
                 <customObject id="BDN-mF-TU8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="pcB-1L-OvU" customClass="TypeCellView"/>
             </objects>
-            <point key="canvasLocation" x="-7.5" y="1815"/>
+            <point key="canvasLocation" x="-7.5" y="1868"/>
         </scene>
         <!--Table List View Controller-->
         <scene sceneID="Zvx-qx-Fcq">
