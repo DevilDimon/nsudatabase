@@ -46,5 +46,6 @@
 - (BOOL)removeConstraint:(NSString *)constraint;
 
 - (BOOL)refreshForeignKeys;
+- (BOOL)makeForeignKey:(NSString *)constraint foreignKey:(ForeignKey *)foreignKey;
 
 @end

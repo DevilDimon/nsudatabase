@@ -488,7 +488,7 @@ static NSString *const VarcharLimit = @"64";
                      JOIN all_constraints c_pk ON c.r_owner = c_pk.owner \
                      AND c.r_constraint_name = c_pk.constraint_name \
                      WHERE c.constraint_type = 'R' \
-                     AND c_pk.table_name = '%@' \
+                     AND a.table_name = '%@' \
                      ORDER BY a.constraint_name, a.position \
                      ", [self.name uppercaseString]];
     if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
@@ -543,6 +543,34 @@ static NSString *const VarcharLimit = @"64";
     }
     
     self.foreignKeys = [newForeignKeys copy];
+    
+    return YES;
+}
+
+- (BOOL)makeForeignKey:(NSString *)constraint foreignKey:(ForeignKey *)foreignKey
+{
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"ALTER TABLE %@ ADD CONSTRAINT %@ \
+                            FOREIGN KEY (", self.name, constraint];
+    for (NSString *column in foreignKey.columns) {
+        [sql appendFormat:@"%@, ", column];
+    }
+    
+    [sql deleteCharactersInRange:NSMakeRange(sql.length - 2, 2)];
+    [sql appendFormat:@") REFERENCES %@ (", foreignKey.tableName];
+    
+    for (NSString *column in foreignKey.foreignFields) {
+        [sql appendFormat:@"%@, ", column];
+    }
+    
+    [sql deleteCharactersInRange:NSMakeRange(sql.length - 2, 2)];
+    [sql appendString:@")"];
+    
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
     
     return YES;
 }

@@ -527,17 +527,17 @@ Gw
             <objects>
                 <viewController title="Edit Foreign Keys" storyboardIdentifier="EditForeignKeysViewController" id="sX7-go-BqP" customClass="EditForeignKeysViewController" sceneMemberID="viewController">
                     <view key="view" id="NeC-BS-BLR">
-                        <rect key="frame" x="0.0" y="0.0" width="546" height="364"/>
+                        <rect key="frame" x="0.0" y="0.0" width="546" height="279"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAI-FW-Drh">
-                                <rect key="frame" x="8" y="8" width="530" height="348"/>
+                                <rect key="frame" x="8" y="93" width="530" height="178"/>
                                 <clipView key="contentView" id="6st-me-Dpp">
-                                    <rect key="frame" x="1" y="0.0" width="528" height="347"/>
+                                    <rect key="frame" x="1" y="0.0" width="528" height="177"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" headerView="APa-5t-zWi" viewBased="YES" id="fzD-Cb-ZON">
-                                            <rect key="frame" x="0.0" y="0.0" width="528" height="324"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="528" height="154"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -679,6 +679,7 @@ Gw
                                             <connections>
                                                 <outlet property="dataSource" destination="sX7-go-BqP" id="UZY-S0-ONS"/>
                                                 <outlet property="delegate" destination="sX7-go-BqP" id="vX4-qh-kfJ"/>
+                                                <outlet property="menu" destination="SC3-wB-G3f" id="Fnx-Du-56S"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -687,7 +688,7 @@ Gw
                                     <rect key="frame" x="1" y="331" width="528" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="JTz-Mw-YWg">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="JTz-Mw-YWg">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -696,21 +697,141 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INi-iN-Vui">
+                                <rect key="frame" x="6" y="66" width="177" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Currently Adding Constraint:" id="8EC-gg-dk5">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x49-qI-vcA">
+                                <rect key="frame" x="189" y="66" width="4" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="pWa-Di-9VB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwA-LC-WeF">
+                                <rect key="frame" x="8" y="36" width="149" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="149" id="xSw-ce-S7m"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Constraint Name" drawsBackground="YES" id="7Ry-gT-AFf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="onNameEdited:" target="sX7-go-BqP" id="Sag-FI-wHA"/>
+                                </connections>
+                            </textField>
+                            <comboBox verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPm-fB-4Lh">
+                                <rect key="frame" x="166" y="33" width="152" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="149" id="xwx-Kr-25L"/>
+                                </constraints>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Table" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="NQM-RY-nbY">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                                <connections>
+                                    <action selector="onTableChanged:" target="sX7-go-BqP" id="QbM-Mb-LAF"/>
+                                </connections>
+                            </comboBox>
+                            <comboBox verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aR3-sJ-iUK">
+                                <rect key="frame" x="8" y="4" width="152" height="26"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Column" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="q4T-Wx-cfl">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                                <connections>
+                                    <action selector="onColumnChanged:" target="sX7-go-BqP" id="0hn-SD-Nal"/>
+                                </connections>
+                            </comboBox>
+                            <comboBox verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cff-W1-Rl0">
+                                <rect key="frame" x="165" y="4" width="152" height="26"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Foreign Column" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="M9a-af-wPq">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                                <connections>
+                                    <action selector="onForeignColumnChanged:" target="sX7-go-BqP" id="TOE-7P-eQa"/>
+                                </connections>
+                            </comboBox>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ibu-H8-8DE">
+                                <rect key="frame" x="413" y="1" width="131" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add Constraint" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="17A-PE-Qgj">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onAddConstraint:" target="sX7-go-BqP" id="opE-wx-R1k"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FmN-JC-1gp">
+                                <rect key="frame" x="475" y="30" width="69" height="32"/>
+                                <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="62U-5R-vcl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onNext:" target="sX7-go-BqP" id="d7j-Ux-t1G"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="IAI-FW-Drh" secondAttribute="bottom" constant="8" id="XLQ-WS-Mxe"/>
+                            <constraint firstItem="INi-iN-Vui" firstAttribute="leading" secondItem="NeC-BS-BLR" secondAttribute="leading" constant="8" id="3RA-tA-cG4"/>
+                            <constraint firstItem="x49-qI-vcA" firstAttribute="leading" secondItem="INi-iN-Vui" secondAttribute="trailing" constant="10" id="4eF-5m-NIO"/>
+                            <constraint firstAttribute="bottom" secondItem="ibu-H8-8DE" secondAttribute="bottom" constant="8" id="4zl-MG-gTD"/>
+                            <constraint firstItem="aR3-sJ-iUK" firstAttribute="leading" secondItem="NeC-BS-BLR" secondAttribute="leading" constant="8" id="BTd-W8-cmj"/>
+                            <constraint firstAttribute="trailing" secondItem="ibu-H8-8DE" secondAttribute="trailing" constant="8" id="F5h-cV-TLg"/>
+                            <constraint firstAttribute="bottom" secondItem="aR3-sJ-iUK" secondAttribute="bottom" constant="8" id="GbY-YD-Tsw"/>
+                            <constraint firstItem="cff-W1-Rl0" firstAttribute="top" secondItem="fPm-fB-4Lh" secondAttribute="bottom" constant="9" id="J5v-EO-LAA"/>
+                            <constraint firstItem="cff-W1-Rl0" firstAttribute="leading" secondItem="aR3-sJ-iUK" secondAttribute="trailing" constant="8" id="L95-cv-l9M"/>
+                            <constraint firstItem="TwA-LC-WeF" firstAttribute="leading" secondItem="NeC-BS-BLR" secondAttribute="leading" constant="8" id="LOT-gn-5Xl"/>
+                            <constraint firstItem="TwA-LC-WeF" firstAttribute="top" secondItem="INi-iN-Vui" secondAttribute="bottom" constant="8" id="SYb-HA-dyB"/>
+                            <constraint firstItem="fPm-fB-4Lh" firstAttribute="top" secondItem="INi-iN-Vui" secondAttribute="bottom" constant="9" id="UwG-Eu-SGI"/>
+                            <constraint firstItem="x49-qI-vcA" firstAttribute="top" secondItem="IAI-FW-Drh" secondAttribute="bottom" constant="10" id="XBk-Uu-fMW"/>
+                            <constraint firstItem="cff-W1-Rl0" firstAttribute="width" secondItem="aR3-sJ-iUK" secondAttribute="width" id="Yhc-lC-MKG"/>
+                            <constraint firstItem="ibu-H8-8DE" firstAttribute="top" secondItem="FmN-JC-1gp" secondAttribute="bottom" constant="8" id="asb-ZK-c1W"/>
                             <constraint firstItem="IAI-FW-Drh" firstAttribute="leading" secondItem="NeC-BS-BLR" secondAttribute="leading" constant="8" id="bGk-E7-f6y"/>
                             <constraint firstAttribute="trailing" secondItem="IAI-FW-Drh" secondAttribute="trailing" constant="8" id="hMm-rM-3bd"/>
+                            <constraint firstItem="INi-iN-Vui" firstAttribute="top" secondItem="IAI-FW-Drh" secondAttribute="bottom" constant="10" id="hZu-MM-s38"/>
+                            <constraint firstItem="aR3-sJ-iUK" firstAttribute="width" secondItem="fPm-fB-4Lh" secondAttribute="width" id="jFA-kh-qTe"/>
+                            <constraint firstItem="x49-qI-vcA" firstAttribute="baseline" secondItem="INi-iN-Vui" secondAttribute="baseline" id="re8-y0-CDR"/>
+                            <constraint firstItem="fPm-fB-4Lh" firstAttribute="leading" secondItem="TwA-LC-WeF" secondAttribute="trailing" constant="9" id="s3a-bU-Key"/>
+                            <constraint firstItem="aR3-sJ-iUK" firstAttribute="top" secondItem="TwA-LC-WeF" secondAttribute="bottom" constant="8" id="uN2-dT-epX"/>
                             <constraint firstItem="IAI-FW-Drh" firstAttribute="top" secondItem="NeC-BS-BLR" secondAttribute="top" constant="8" id="wJh-h2-koC"/>
+                            <constraint firstAttribute="trailing" secondItem="FmN-JC-1gp" secondAttribute="trailing" constant="8" id="xjT-IP-UJh"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="columnComboBox" destination="aR3-sJ-iUK" id="PL7-Ew-Ako"/>
+                        <outlet property="constraintTextField" destination="x49-qI-vcA" id="Wjf-dL-UAV"/>
+                        <outlet property="foreignColumnComboBox" destination="cff-W1-Rl0" id="PtF-nf-rMi"/>
+                        <outlet property="nameTextField" destination="TwA-LC-WeF" id="Xpb-HR-mKJ"/>
+                        <outlet property="tableComboBox" destination="fPm-fB-4Lh" id="k5p-TY-1zJ"/>
                         <outlet property="tableView" destination="fzD-Cb-ZON" id="iMv-St-6pv"/>
                     </connections>
                 </viewController>
                 <customObject id="3uc-lK-Oir" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="SC3-wB-G3f">
+                    <items>
+                        <menuItem title="Remove Constraint" id="zah-sP-Iwj">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="onRemoveConstraint:" target="sX7-go-BqP" id="pdk-bg-lgk"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
-            <point key="canvasLocation" x="-636" y="1854"/>
+            <point key="canvasLocation" x="-636" y="1971.5"/>
         </scene>
         <!--Edit Table-->
         <scene sceneID="Y9j-80-aAB">
