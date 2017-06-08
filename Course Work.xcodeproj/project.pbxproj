@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		13191C9C1EE958A50061923D /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13191C9B1EE958A50061923D /* ReportViewController.m */; };
+		13191C9F1EE9708E0061923D /* EditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13191C9E1EE9708E0061923D /* EditTableViewController.m */; };
+		13191CA21EE9852D0061923D /* TypeCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13191CA11EE9852D0061923D /* TypeCellView.m */; };
+		13191CA51EE985C80061923D /* CheckCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13191CA41EE985C80061923D /* CheckCellView.m */; };
 		13197FE91EE87F3D00D529A1 /* NullCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13197FE81EE87F3D00D529A1 /* NullCellView.xib */; };
 		13197FF01EE9213500D529A1 /* NullTextPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 13197FEF1EE9213500D529A1 /* NullTextPopover.m */; };
 		13197FF31EE921DC00D529A1 /* NullDatePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 13197FF21EE921DC00D529A1 /* NullDatePopover.m */; };
@@ -39,6 +42,12 @@
 /* Begin PBXFileReference section */
 		13191C9A1EE958A50061923D /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		13191C9B1EE958A50061923D /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
+		13191C9D1EE9708E0061923D /* EditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewController.h; sourceTree = "<group>"; };
+		13191C9E1EE9708E0061923D /* EditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewController.m; sourceTree = "<group>"; };
+		13191CA01EE9852D0061923D /* TypeCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeCellView.h; sourceTree = "<group>"; };
+		13191CA11EE9852D0061923D /* TypeCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeCellView.m; sourceTree = "<group>"; };
+		13191CA31EE985C80061923D /* CheckCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckCellView.h; sourceTree = "<group>"; };
+		13191CA41EE985C80061923D /* CheckCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckCellView.m; sourceTree = "<group>"; };
 		13197FE81EE87F3D00D529A1 /* NullCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NullCellView.xib; sourceTree = "<group>"; };
 		13197FEE1EE9213500D529A1 /* NullTextPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullTextPopover.h; sourceTree = "<group>"; };
 		13197FEF1EE9213500D529A1 /* NullTextPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullTextPopover.m; sourceTree = "<group>"; };
@@ -197,6 +206,8 @@
 				13197FF71EE9423400D529A1 /* InsertRowViewController.m */,
 				13191C9A1EE958A50061923D /* ReportViewController.h */,
 				13191C9B1EE958A50061923D /* ReportViewController.m */,
+				13191C9D1EE9708E0061923D /* EditTableViewController.h */,
+				13191C9E1EE9708E0061923D /* EditTableViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -403,6 +414,10 @@
 				1352777F1EE18F9C00D22215 /* DateCellView.h */,
 				135277801EE18F9C00D22215 /* DateCellView.m */,
 				13197FE81EE87F3D00D529A1 /* NullCellView.xib */,
+				13191CA01EE9852D0061923D /* TypeCellView.h */,
+				13191CA11EE9852D0061923D /* TypeCellView.m */,
+				13191CA31EE985C80061923D /* CheckCellView.h */,
+				13191CA41EE985C80061923D /* CheckCellView.m */,
 			);
 			name = TableCellView;
 			sourceTree = "<group>";
@@ -554,11 +569,14 @@
 				136184EF1EC1C2D700CE0D56 /* NSViewController+ErrorString.m in Sources */,
 				136184EA1EC1897A00CE0D56 /* LoginWindowController.m in Sources */,
 				13197FF01EE9213500D529A1 /* NullTextPopover.m in Sources */,
+				13191CA21EE9852D0061923D /* TypeCellView.m in Sources */,
 				135277811EE18F9C00D22215 /* DateCellView.m in Sources */,
+				13191C9F1EE9708E0061923D /* EditTableViewController.m in Sources */,
 				13A2E7C71E8FD6E30063A476 /* main.m in Sources */,
 				13A2E7C41E8FD6E30063A476 /* AppDelegate.m in Sources */,
 				13191C9C1EE958A50061923D /* ReportViewController.m in Sources */,
 				136184F51EC1CC1000CE0D56 /* TableListViewController.m in Sources */,
+				13191CA51EE985C80061923D /* CheckCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

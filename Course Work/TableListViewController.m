@@ -11,6 +11,7 @@
 #import "ocilib.h"
 #import "NSString+Oracle.h"
 #import "NSViewController+ErrorString.h"
+#import "EditTableViewController.h"
 
 @interface TableListViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
@@ -111,6 +112,26 @@
     [self.tableView deselectAll:nil];
     
     [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onCreateTable:(id)sender
+{
+    EditTableViewController *vc = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"EditTableViewController"];
+    
+    vc.conn = self.conn;
+    [self presentViewControllerAsModalWindow:vc];
+}
+
+- (IBAction)onAlterTable:(id)sender
+{
+    if (!self.contentVC.table) {
+        return;
+    }
+    EditTableViewController *vc = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"EditTableViewController"];
+    
+    vc.conn = self.conn;
+    vc.table = self.contentVC.table;
+    [self presentViewControllerAsModalWindow:vc];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification

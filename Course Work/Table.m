@@ -10,6 +10,8 @@
 #import <OrderedDictionary.h>
 #import "NSString+Oracle.h"
 
+static NSString *const VarcharLimit = @"64";
+
 
 @interface Table ()
 
@@ -252,6 +254,52 @@
     });
     
     return [supportedTypes containsObject:type];
+}
+
+- (BOOL)alterName:(NSString *)name
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSString *sql = [NSString stringWithFormat:@"ALTER TABLE %@ RENAME TO %@", self.name, name];
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    self.name = name;
+    return YES;
+}
+
+- (BOOL)alterAttributeName:(NSString *)attribute newName:(NSString *)newName
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSString *sql = [NSString stringWithFormat:@"ALTER TABLE %@ RENAME COLUMN %@ TO %@", self.name,
+        attribute, newName];
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    return [self refresh];
+}
+
+- (BOOL)alterAttributeType:(NSString *)attribute newType:(NSString *)type
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSString *newType = type;
+    if ([type isEqualToString:@"VARCHAR2"]) {
+        newType = [NSString stringWithFormat:@"VARCHAR2(%@)", VarcharLimit];
+    }
+    NSString *sql = [NSString stringWithFormat:@"ALTER TABLE %@ MODIFY (%@ %@)", self.name,
+                     attribute, newType];
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    return [self refresh];
 }
 
 @end

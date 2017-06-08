@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ocilib.h"
+#import "Table.h"
 
 @interface ContentViewController : NSViewController
 
+@property (nonatomic) Table *table;
 @property (nonatomic, assign) OCI_Connection *conn;
 @property (nonatomic, copy) NSString *tableName;
 

@@ -7,7 +7,6 @@
 //
 
 #import "ContentViewController.h"
-#import "Table.h"
 #import "NSViewController+ErrorString.h"
 #import "DateCellView.h"
 #import "NullTextPopover.h"
@@ -16,7 +15,6 @@
 
 @interface ContentViewController () <NSTableViewDelegate, NSTableViewDataSource, NSPopoverDelegate>
 
-@property (nonatomic) Table *table;
 @property (nonatomic) NSTableView *tableView;
 
 @property (nonatomic) NSPopover *nullPopover;

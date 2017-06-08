@@ -25,4 +25,8 @@
 - (BOOL)updateRow:(NSInteger)row columnName:(NSString *)column newValue:(id)value;
 - (BOOL)insertRowWithColumns:(NSArray *)columns values:(NSArray *)values;
 
+- (BOOL)alterName:(NSString *)name;
+- (BOOL)alterAttributeName:(NSString *)attribute newName:(NSString *)newName;
+- (BOOL)alterAttributeType:(NSString *)attribute newType:(NSString *)type;
+
 @end
