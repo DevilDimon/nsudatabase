@@ -14,11 +14,12 @@
 
 @property (nonatomic) OCI_Connection *conn;
 @property (nonatomic) NSString *name;
-@property (nonatomic) NSString *sql;
+@property (nonatomic) OCI_Resultset *rs;
 @property (nonatomic) OrderedDictionary<NSString *, NSString *> *columns;
 @property (nonatomic) NSMutableArray<NSMutableArray *> *rows;
 
-- (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn sql:(NSString *)sql;
+- (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn
+    resultSet:(OCI_Resultset *)rs;
 - (BOOL)refresh;
 - (BOOL)deleteRow:(NSInteger)row;
 - (BOOL)updateRow:(NSInteger)row columnName:(NSString *)column newValue:(id)value;

@@ -18,13 +18,14 @@
 
 @implementation Table
 
-- (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn sql:(NSString *)sql
+- (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn
+    resultSet:(OCI_Resultset *)rs
 {
     self = [super init];
     if (self) {
         _name = name;
         _conn = conn;
-        _sql = sql;
+        _rs = rs;
     }
     
     return self;
@@ -32,7 +33,23 @@
 
 - (BOOL)refresh
 {
-    if (self.sql) {
+    if (self.rs) {
+        MutableOrderedDictionary *newColumns = [MutableOrderedDictionary dictionary];
+        int n = OCI_GetColumnCount(self.rs);
+        for (int i = 1; i <= n; i++) {
+            OCI_Column *column = OCI_GetColumn(self.rs, i);
+            NSString *columnName = [NSString stringWithOtext:OCI_ColumnGetName(column)];
+            NSString *columnType = [NSString stringWithOtext:OCI_ColumnGetSQLType(column)];
+            if ([self isTypeSupported:columnType]) {
+                newColumns[columnName] = columnType;
+            }
+
+        }
+        
+        self.columns = [newColumns copy];
+        
+        [self getNewRows:self.rs];
+        
         return YES;
     }
     
@@ -65,6 +82,17 @@
     }
     OCI_Resultset *rs = OCI_GetResultset(st);
     
+    [self getNewRows:rs];
+    
+    if (self.rs) {
+        OCI_StatementFree(OCI_ResultsetGetStatement(self.rs));
+    }
+    
+    return YES;
+}
+
+- (void)getNewRows:(OCI_Resultset *)rs
+{
     NSMutableArray *newRows = [NSMutableArray array];
     while (OCI_FetchNext(rs)) {
         NSMutableArray *row = [NSMutableArray arrayWithCapacity:self.columns.count];
@@ -88,8 +116,6 @@
     }
     
     self.rows = [newRows mutableCopy];
-    
-    return YES;
 }
 
 - (BOOL)deleteRow:(NSInteger)row

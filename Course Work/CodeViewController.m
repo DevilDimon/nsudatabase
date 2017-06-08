@@ -10,6 +10,8 @@
 #import <Fragaria.h>
 #import "NSString+Oracle.h"
 #import "NSViewController+ErrorString.h"
+#import "ReportViewController.h"
+#import "Table.h"
 
 @interface CodeViewController ()
 
@@ -23,7 +25,6 @@
 - (void)viewDidLoad
 {
     self.codeView.syntaxDefinitionName = @"sql";
-    self.codeView.string = @"-- Type a single SQL statement or a PL/SQL block";
 }
 
 - (IBAction)onExecute:(id)sender
@@ -35,19 +36,27 @@
     
     OCI_Statement *st = OCI_StatementCreate(self.conn);
     
-    if (OCI_ExecuteStmt(st, [self.codeView.textView.string otext]) != TRUE) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        alert.alertStyle = NSAlertStyleCritical;
-        alert.messageText = @"Table Update Error";
-        alert.informativeText = [self errorString];
-        [alert runModal];
-    }
-    else {
-        [self dismissController:nil];
+    if (OCI_ExecuteStmt(st, [self.codeView.textView.string otext]) == TRUE) {
+        
+        NSString *selectString = @"SELECT";
+        NSString *code = self.codeView.textView.string;
+        NSRange prefixRange = [code rangeOfString:selectString
+                                               options:(NSAnchoredSearch | NSCaseInsensitiveSearch)];
+        if (prefixRange.location == NSNotFound) {
+            OCI_StatementFree(st);
+            [self dismissController:nil];
+            return;
+        }
+        
+        ReportViewController *vc = [[NSStoryboard storyboardWithName:@"Main"
+            bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ReportViewController"];
+        vc.table = [[Table alloc] initWithName:nil connection:self.conn resultSet:OCI_GetResultset(st)];
+        
+        [self presentViewControllerAsModalWindow:vc];
+        
     }
     
     [self.view.window endSheet:progressWC.window];
-    OCI_StatementFree(st);
 }
 
 @end

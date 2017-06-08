@@ -26,10 +26,6 @@
 
 @implementation ContentViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
 - (void)setTableName:(NSString *)tableName
 {
     _tableName = tableName;
@@ -78,7 +74,7 @@
 
 - (IBAction)onRefreshPressed:(id)sender
 {
-    self.table = [[Table alloc] initWithName:self.tableName connection:self.conn sql:nil];
+    self.table = [[Table alloc] initWithName:self.tableName connection:self.conn resultSet:NULL];
     
     NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
     [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
