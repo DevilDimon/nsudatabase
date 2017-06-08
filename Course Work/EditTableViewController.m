@@ -15,6 +15,7 @@
 
 @property (nonatomic) IBOutlet NSTableView *constraintsTableView;
 @property (nonatomic) IBOutlet NSTextField *nameTextField;
+@property (nonatomic) IBOutlet NSTableView *uniqueTableView;
 
 @end
 
@@ -31,9 +32,11 @@
 - (void)refresh
 {
     if (self.table) {
-        
+        [self.table refresh];
+        [self.table refreshConstraints];
         self.nameTextField.stringValue = self.table.name;
         [self.constraintsTableView reloadData];
+        [self.uniqueTableView reloadData];
         
         return;
     }
@@ -43,6 +46,9 @@
 {
     if (tableView == self.constraintsTableView) {
         return self.table.columns.count;
+    }
+    if (tableView == self.uniqueTableView) {
+        return self.table.uniqueColumns.count;
     }
     
     return 0;
@@ -69,6 +75,24 @@
             else {
                 cell.checkbox.state = NSOffState;
             }
+            return cell;
+        }
+    }
+    if (tableView == self.uniqueTableView) {
+        if ([tableColumn.identifier isEqualToString:@"UniqueColumn"]) {
+            NSTableCellView *cell = [tableView makeViewWithIdentifier:@"UniqueCell" owner:self];
+            cell.textField.stringValue = [self.table.uniqueColumns keyAtIndex:row];
+            return cell;
+        }
+        if ([tableColumn.identifier isEqualToString:@"ParticipatingColumn"]) {
+            NSTableCellView *cell = [tableView makeViewWithIdentifier:@"ParticipatingCell" owner:self];
+            NSMutableString *columns = [NSMutableString string];
+            for (NSString *column in self.table.uniqueColumns[row]) {
+                [columns appendFormat:@"%@, ", column];
+            }
+            
+            [columns deleteCharactersInRange:NSMakeRange(columns.length - 2, 2)];
+            cell.textField.stringValue = columns;
             return cell;
         }
     }
@@ -202,6 +226,65 @@
     
     [self.constraintsTableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
         columnIndexes:[NSIndexSet indexSetWithIndex:2]];
+    
+    [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onMakeUnique:(id)sender
+{
+    if (self.constraintsTableView.selectedRowIndexes.count <= 0) {
+        return;
+    }
+    
+    if (!self.table) {
+        return;
+    }
+    
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    NSMutableArray *names = [NSMutableArray array];
+    [self.constraintsTableView.selectedRowIndexes
+     enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
+         NSString *name = [self.table.columns keyAtIndex:index];
+         [names addObject:name];
+     }];
+    
+    [self.table makeUnique:names];
+    
+    [self refresh];
+    
+    [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onRemoveUniqueConstraint:(id)sender
+{
+    if (self.uniqueTableView.selectedRowIndexes.count <= 0) {
+        return;
+    }
+    
+    if (!self.table) {
+        return;
+    }
+    
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    NSMutableArray *names = [NSMutableArray array];
+    [self.uniqueTableView.selectedRowIndexes
+     enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
+         NSString *name = [self.table.uniqueColumns keyAtIndex:index];
+         [names addObject:name];
+     }];
+    
+    
+    for (NSString *constraint in names) {
+        [self.table removeConstraint:constraint];
+    }
+    
+    [self refresh];
     
     [self.view.window endSheet:progressWC.window];
 }

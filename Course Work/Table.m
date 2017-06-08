@@ -360,5 +360,75 @@ static NSString *const VarcharLimit = @"64";
     return [self refresh];
 }
 
+- (BOOL)refreshConstraints
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSString *sql = [NSString stringWithFormat:@"SELECT cc.constraint_name, cc.column_name \
+                     FROM all_constraints c \
+                     JOIN all_cons_columns cc ON (c.owner = cc.owner \
+                     AND c.constraint_name = cc.constraint_name) \
+                     WHERE c.constraint_type = 'U' \
+                     AND c.table_name = '%@'", self.name];
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    MutableOrderedDictionary *newUniqueColumns = [MutableOrderedDictionary dictionary];
+    OCI_Resultset *rs = OCI_GetResultset(st);
+    while (OCI_FetchNext(rs)) {
+        NSString *constraintName = [NSString stringWithOtext:OCI_GetString(rs, 1)];
+        NSString *columnName = [NSString stringWithOtext:OCI_GetString(rs, 2)];
+        if (!newUniqueColumns[constraintName]) {
+            newUniqueColumns[constraintName] = [NSMutableArray array];
+        }
+        [newUniqueColumns[constraintName] addObject:columnName];
+    }
+    
+    OCI_StatementFree(st);
+    self.uniqueColumns = [newUniqueColumns copy];
+    
+    return YES;
+}
+
+- (BOOL)makeUnique:(NSArray<NSString *> *)attributes
+{
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"ALTER TABLE %@ ADD CONSTRAINT %@",
+        self.name, self.name];
+    for (NSString *attribute in attributes) {
+        [sql appendFormat:@"_%@", attribute];
+    }
+    [sql appendString:@"_uq UNIQUE ("];
+    
+    for (NSString *attribute in attributes) {
+        [sql appendFormat:@"%@, ", attribute];
+    }
+    
+    [sql deleteCharactersInRange:NSMakeRange(sql.length - 2, 2)];
+    [sql appendString:@")"];
+    
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    return [self refreshConstraints];
+}
+
+- (BOOL)removeConstraint:(NSString *)constraint
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSString *sql = [NSString stringWithFormat:@"ALTER TABLE %@ DROP CONSTRAINT %@", self.name,
+        constraint];
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    return [self refreshConstraints];
+}
+
 
 @end

@@ -19,6 +19,8 @@
 @property (nonatomic) NSMutableArray<NSMutableArray *> *rows;
 @property (nonatomic) NSMutableArray<NSString *> *nullableColumns;
 
+@property (nonatomic) OrderedDictionary<NSString *, NSArray<NSString *> *> *uniqueColumns;
+
 - (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn
     resultSet:(OCI_Resultset *)rs;
 - (BOOL)refresh;
@@ -32,5 +34,9 @@
 - (BOOL)alterAttributeNullability:(NSString *)attribute nullability:(BOOL)nullability;
 - (BOOL)addAttribute;
 - (BOOL)removeAttribute:(NSString *)attribute;
+
+- (BOOL)refreshConstraints;
+- (BOOL)makeUnique:(NSArray<NSString *> *)attributes;
+- (BOOL)removeConstraint:(NSString *)constraint;
 
 @end
