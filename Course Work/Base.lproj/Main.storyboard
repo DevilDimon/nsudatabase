@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -708,13 +709,13 @@ Gw
                                 </connections>
                             </textField>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIq-pH-Agn">
-                                <rect key="frame" x="8" y="8" width="579" height="230"/>
+                                <rect key="frame" x="8" y="87" width="579" height="151"/>
                                 <clipView key="contentView" id="nRm-DD-AuC">
-                                    <rect key="frame" x="1" y="0.0" width="577" height="229"/>
+                                    <rect key="frame" x="1" y="0.0" width="577" height="150"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" headerView="7bQ-sh-dmE" viewBased="YES" id="Upt-5t-2CI">
-                                            <rect key="frame" x="0.0" y="0.0" width="577" height="206"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="577" height="127"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -816,23 +817,67 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B86-iM-Acg">
+                                <rect key="frame" x="8" y="62" width="147" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Primary Key Constraint:" id="W29-2g-lD9">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQa-ue-7KM">
+                                <rect key="frame" x="161" y="62" width="103" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="TABLENAME_PK" id="QsD-9O-qPb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfQ-sn-L1N">
+                                <rect key="frame" x="8" y="37" width="136" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="Column1, Column2, ..." id="o9w-tF-Zrg">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZR0-sp-FS6">
+                                <rect key="frame" x="2" y="1" width="165" height="32"/>
+                                <buttonCell key="cell" type="push" title="Remove Primary Key" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="V5P-88-Dc4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onRemovePrimaryKey:" target="5I6-dv-OPl" id="vjc-ey-nWT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="qfQ-sn-L1N" firstAttribute="top" secondItem="B86-iM-Acg" secondAttribute="bottom" constant="8" id="1E5-ei-CsX"/>
                             <constraint firstAttribute="trailing" secondItem="EIq-pH-Agn" secondAttribute="trailing" constant="8" id="9ir-J5-F4g"/>
                             <constraint firstItem="XsS-8M-Q5b" firstAttribute="leading" secondItem="jBh-ms-faD" secondAttribute="leading" constant="8" id="EPU-au-PW5"/>
                             <constraint firstItem="XsS-8M-Q5b" firstAttribute="top" secondItem="aPO-2k-viy" secondAttribute="bottom" constant="8" id="HHS-sY-C2v"/>
                             <constraint firstAttribute="trailing" secondItem="XsS-8M-Q5b" secondAttribute="trailing" constant="8" id="JCL-V4-J4z"/>
-                            <constraint firstAttribute="bottom" secondItem="EIq-pH-Agn" secondAttribute="bottom" constant="8" id="JvD-7U-J6A"/>
                             <constraint firstItem="EIq-pH-Agn" firstAttribute="top" secondItem="XsS-8M-Q5b" secondAttribute="bottom" constant="8" id="L5y-36-TFs"/>
                             <constraint firstItem="aPO-2k-viy" firstAttribute="leading" secondItem="jBh-ms-faD" secondAttribute="leading" constant="20" id="OHD-DH-kKG"/>
+                            <constraint firstItem="iQa-ue-7KM" firstAttribute="firstBaseline" secondItem="B86-iM-Acg" secondAttribute="firstBaseline" id="PBf-kX-P1w"/>
+                            <constraint firstItem="qfQ-sn-L1N" firstAttribute="leading" secondItem="jBh-ms-faD" secondAttribute="leading" constant="10" id="TL3-2f-MuO"/>
+                            <constraint firstItem="B86-iM-Acg" firstAttribute="leading" secondItem="jBh-ms-faD" secondAttribute="leading" constant="10" id="Ww9-KF-GJR"/>
                             <constraint firstItem="XsS-8M-Q5b" firstAttribute="height" secondItem="jBh-ms-faD" secondAttribute="height" multiplier="0.5" id="Xtx-vb-MJX"/>
                             <constraint firstItem="aPO-2k-viy" firstAttribute="top" secondItem="jBh-ms-faD" secondAttribute="top" constant="8" id="Xyx-Wc-Fxq"/>
+                            <constraint firstItem="ZR0-sp-FS6" firstAttribute="leading" secondItem="jBh-ms-faD" secondAttribute="leading" constant="8" id="dF5-72-b4w"/>
+                            <constraint firstItem="iQa-ue-7KM" firstAttribute="leading" secondItem="B86-iM-Acg" secondAttribute="trailing" constant="10" id="g6B-bP-dpm"/>
+                            <constraint firstItem="B86-iM-Acg" firstAttribute="top" secondItem="EIq-pH-Agn" secondAttribute="bottom" constant="8" id="jQh-0p-QQo"/>
                             <constraint firstItem="EIq-pH-Agn" firstAttribute="leading" secondItem="jBh-ms-faD" secondAttribute="leading" constant="8" id="ni8-cE-d1L"/>
+                            <constraint firstAttribute="bottom" secondItem="ZR0-sp-FS6" secondAttribute="bottom" constant="8" id="x9A-pq-uXE"/>
+                            <constraint firstItem="ZR0-sp-FS6" firstAttribute="top" secondItem="qfQ-sn-L1N" secondAttribute="bottom" constant="8" id="zy1-NB-MJu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="constraintsTableView" destination="LAq-g9-dJ7" id="Sec-yg-qdb"/>
                         <outlet property="nameTextField" destination="aPO-2k-viy" id="dKE-Vg-0L2"/>
+                        <outlet property="primaryKeyColumnsTextField" destination="qfQ-sn-L1N" id="SIy-Gd-alj"/>
+                        <outlet property="primaryKeyTextField" destination="iQa-ue-7KM" id="SbS-G0-EuB"/>
                         <outlet property="uniqueTableView" destination="Upt-5t-2CI" id="k8p-he-peL"/>
                     </connections>
                 </viewController>
@@ -870,6 +915,9 @@ Gw
                         </menuItem>
                         <menuItem title="Make Primary Key" id="8Fk-VM-DyJ">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="onMakePrimaryKey:" target="5I6-dv-OPl" id="KCZ-mr-svM"/>
+                            </connections>
                         </menuItem>
                     </items>
                 </menu>

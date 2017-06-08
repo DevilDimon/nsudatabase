@@ -368,7 +368,7 @@ static NSString *const VarcharLimit = @"64";
                      JOIN all_cons_columns cc ON (c.owner = cc.owner \
                      AND c.constraint_name = cc.constraint_name) \
                      WHERE c.constraint_type = 'U' \
-                     AND c.table_name = '%@'", self.name];
+                     AND c.table_name = '%@'", [self.name uppercaseString]];
     if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
         return NO;
     }
@@ -385,6 +385,31 @@ static NSString *const VarcharLimit = @"64";
     }
     
     OCI_StatementFree(st);
+    
+    st = OCI_StatementCreate(self.conn);
+    sql = [NSString stringWithFormat:@"SELECT cols.constraint_name, cols.column_name, cols.position \
+           FROM all_constraints cons \
+           JOIN all_cons_columns cols  ON \
+           (cons.constraint_name = cols.constraint_name \
+           AND cons.owner = cols.owner) \
+           WHERE cons.constraint_type = 'P' \
+           AND cols.table_name = '%@' \
+           ORDER BY cols.table_name, cols.position", [self.name uppercaseString]];
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    NSMutableArray *newPrimaryKeyColumns = [NSMutableArray array];
+    rs = OCI_GetResultset(st);
+    while (OCI_FetchNext(rs)) {
+        self.primaryKeyConstraintName = [NSString stringWithOtext:OCI_GetString(rs, 1)];
+        [newPrimaryKeyColumns addObject:[NSString stringWithOtext:OCI_GetString(rs, 2)]];
+    }
+    
+    self.primaryKeyColumns = [newPrimaryKeyColumns copy];
+    if (self.primaryKeyColumns.count == 0) {
+        self.primaryKeyConstraintName = nil;
+    }
     self.uniqueColumns = [newUniqueColumns copy];
     
     return YES;
@@ -398,6 +423,28 @@ static NSString *const VarcharLimit = @"64";
         [sql appendFormat:@"_%@", attribute];
     }
     [sql appendString:@"_uq UNIQUE ("];
+    
+    for (NSString *attribute in attributes) {
+        [sql appendFormat:@"%@, ", attribute];
+    }
+    
+    [sql deleteCharactersInRange:NSMakeRange(sql.length - 2, 2)];
+    [sql appendString:@")"];
+    
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    return [self refreshConstraints];
+}
+
+- (BOOL)makePrimaryKey:(NSArray<NSString *> *)attributes
+{
+    NSMutableString *sql = [NSMutableString
+        stringWithFormat:@"ALTER TABLE %@ ADD CONSTRAINT %@_pk PRIMARY KEY (", self.name, self.name];
     
     for (NSString *attribute in attributes) {
         [sql appendFormat:@"%@, ", attribute];

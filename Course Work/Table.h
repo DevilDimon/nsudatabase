@@ -20,6 +20,8 @@
 @property (nonatomic) NSMutableArray<NSString *> *nullableColumns;
 
 @property (nonatomic) OrderedDictionary<NSString *, NSArray<NSString *> *> *uniqueColumns;
+@property (nonatomic) NSString *primaryKeyConstraintName;
+@property (nonatomic) NSArray<NSString *> *primaryKeyColumns;
 
 - (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn
     resultSet:(OCI_Resultset *)rs;
@@ -37,6 +39,7 @@
 
 - (BOOL)refreshConstraints;
 - (BOOL)makeUnique:(NSArray<NSString *> *)attributes;
+- (BOOL)makePrimaryKey:(NSArray<NSString *> *)attributes;
 - (BOOL)removeConstraint:(NSString *)constraint;
 
 @end

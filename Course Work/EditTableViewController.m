@@ -16,6 +16,8 @@
 @property (nonatomic) IBOutlet NSTableView *constraintsTableView;
 @property (nonatomic) IBOutlet NSTextField *nameTextField;
 @property (nonatomic) IBOutlet NSTableView *uniqueTableView;
+@property (nonatomic) IBOutlet NSTextField *primaryKeyTextField;
+@property (nonatomic) IBOutlet NSTextField *primaryKeyColumnsTextField;
 
 @end
 
@@ -35,6 +37,17 @@
         [self.table refresh];
         [self.table refreshConstraints];
         self.nameTextField.stringValue = self.table.name;
+        self.primaryKeyTextField.stringValue = self.table.primaryKeyConstraintName ?: @"None";
+        
+        NSMutableString *primaryKeyColumns = [NSMutableString stringWithString:@"Columns: "];
+        for (NSString *column in self.table.primaryKeyColumns) {
+            [primaryKeyColumns appendFormat:@"%@, ", column];
+        }
+        if (self.table.primaryKeyConstraintName) {
+            [primaryKeyColumns deleteCharactersInRange:NSMakeRange(primaryKeyColumns.length - 2, 2)];
+        }
+        self.primaryKeyColumnsTextField.stringValue = [primaryKeyColumns copy];
+        
         [self.constraintsTableView reloadData];
         [self.uniqueTableView reloadData];
         
@@ -283,6 +296,55 @@
     for (NSString *constraint in names) {
         [self.table removeConstraint:constraint];
     }
+    
+    [self refresh];
+    
+    [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onMakePrimaryKey:(id)sender
+{
+    if (self.constraintsTableView.selectedRowIndexes.count <= 0) {
+        return;
+    }
+    
+    if (!self.table) {
+        return;
+    }
+    
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    NSMutableArray *names = [NSMutableArray array];
+    [self.constraintsTableView.selectedRowIndexes
+     enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
+         NSString *name = [self.table.columns keyAtIndex:index];
+         [names addObject:name];
+     }];
+    
+    [self.table makePrimaryKey:names];
+    
+    [self refresh];
+    
+    [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onRemovePrimaryKey:(id)sender
+{
+    if (!self.table) {
+        return;
+    }
+    
+    if (!self.table.primaryKeyConstraintName) {
+        return;
+    }
+    
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    [self.table removeConstraint:self.table.primaryKeyConstraintName];
     
     [self refresh];
     
