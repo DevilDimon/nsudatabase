@@ -477,5 +477,75 @@ static NSString *const VarcharLimit = @"64";
     return [self refreshConstraints];
 }
 
+- (BOOL)refreshForeignKeys
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSString *sql = [NSString stringWithFormat:@"SELECT a.column_name, a.constraint_name, \
+                     c_pk.table_name r_table_name, c_pk.constraint_name r_pk\
+                     FROM all_cons_columns a \
+                     JOIN all_constraints c ON a.owner = c.owner \
+                     AND a.constraint_name = c.constraint_name \
+                     JOIN all_constraints c_pk ON c.r_owner = c_pk.owner \
+                     AND c.r_constraint_name = c_pk.constraint_name \
+                     WHERE c.constraint_type = 'R' \
+                     AND c_pk.table_name = '%@' \
+                     ORDER BY a.constraint_name, a.position \
+                     ", [self.name uppercaseString]];
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    MutableOrderedDictionary<NSString *, ForeignKey *> *newForeignKeys = [MutableOrderedDictionary
+        dictionary];
+    OCI_Resultset *rs = OCI_GetResultset(st);
+    while (OCI_FetchNext(rs)) {
+        NSString *constraint = [NSString stringWithOtext:OCI_GetString(rs, 2)];
+        if (!newForeignKeys[constraint]) {
+            newForeignKeys[constraint] = [[ForeignKey alloc] init];
+        }
+        
+        NSString *column = [NSString stringWithOtext:OCI_GetString(rs, 1)];
+        [newForeignKeys[constraint].columns addObject:column];
+        
+        NSString *tableName = [NSString stringWithOtext:OCI_GetString(rs, 3)];
+        newForeignKeys[constraint].tableName = tableName;
+        
+        NSString *primaryKeyConstraint = [NSString stringWithOtext:OCI_GetString(rs, 4)];
+        newForeignKeys[constraint].primaryKeyConstraint = primaryKeyConstraint;
+    }
+    
+    OCI_StatementFree(st);
+    
+    for (NSString *constraint in newForeignKeys) {
+        ForeignKey *fk = newForeignKeys[constraint];
+        st = OCI_StatementCreate(self.conn);
+        sql = [NSString stringWithFormat:@"SELECT cols.column_name \
+               FROM all_constraints cons \
+               JOIN all_cons_columns cols  ON \
+               (cons.constraint_name = cols.constraint_name \
+               AND cons.owner = cols.owner) \
+               WHERE cons.constraint_type = 'P' \
+               AND cols.table_name = '%@' \
+               AND cols.constraint_name = '%@' \
+               ORDER BY cols.table_name, cols.position", [fk.tableName uppercaseString],
+               [fk.primaryKeyConstraint uppercaseString]];
+        
+        if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+            return NO;
+        }
+        
+        rs = OCI_GetResultset(st);
+        while (OCI_FetchNext(rs)) {
+            [fk.foreignFields addObject:[NSString stringWithOtext:OCI_GetString(rs, 1)]];
+        }
+        
+        OCI_StatementFree(st);
+    }
+    
+    self.foreignKeys = [newForeignKeys copy];
+    
+    return YES;
+}
+
 
 @end

@@ -10,6 +10,7 @@
 #import "NSString+Oracle.h"
 #import "TypeCellView.h"
 #import "CheckCellView.h"
+#import "EditForeignKeysViewController.h"
 
 @interface EditTableViewController () <NSTableViewDataSource, NSTableViewDelegate>
 
@@ -349,6 +350,20 @@
     [self refresh];
     
     [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onEditForeignKeys:(id)sender
+{
+    if (!self.table) {
+        return;
+    }
+    
+    EditForeignKeysViewController *vc = [[NSStoryboard storyboardWithName:@"Main"
+        bundle:[NSBundle mainBundle]]
+        instantiateControllerWithIdentifier:@"EditForeignKeysViewController"];
+    vc.table = self.table;
+    
+    [self presentViewControllerAsModalWindow:vc];
 }
 
 @end

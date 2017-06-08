@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ocilib.h"
 #import <OrderedDictionary.h>
+#import "ForeignKey.h"
 
 @interface Table : NSObject
 
@@ -22,6 +23,8 @@
 @property (nonatomic) OrderedDictionary<NSString *, NSArray<NSString *> *> *uniqueColumns;
 @property (nonatomic) NSString *primaryKeyConstraintName;
 @property (nonatomic) NSArray<NSString *> *primaryKeyColumns;
+
+@property (nonatomic) OrderedDictionary<NSString *, ForeignKey *> *foreignKeys;
 
 - (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn
     resultSet:(OCI_Resultset *)rs;
@@ -41,5 +44,7 @@
 - (BOOL)makeUnique:(NSArray<NSString *> *)attributes;
 - (BOOL)makePrimaryKey:(NSArray<NSString *> *)attributes;
 - (BOOL)removeConstraint:(NSString *)constraint;
+
+- (BOOL)refreshForeignKeys;
 
 @end

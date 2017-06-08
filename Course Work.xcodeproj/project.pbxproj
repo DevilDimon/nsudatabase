@@ -11,6 +11,8 @@
 		13191C9F1EE9708E0061923D /* EditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13191C9E1EE9708E0061923D /* EditTableViewController.m */; };
 		13191CA21EE9852D0061923D /* TypeCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13191CA11EE9852D0061923D /* TypeCellView.m */; };
 		13191CA51EE985C80061923D /* CheckCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13191CA41EE985C80061923D /* CheckCellView.m */; };
+		13191CA81EE9CE700061923D /* EditForeignKeysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13191CA71EE9CE700061923D /* EditForeignKeysViewController.m */; };
+		13191CAB1EE9D53A0061923D /* ForeignKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 13191CAA1EE9D5390061923D /* ForeignKey.m */; };
 		13197FE91EE87F3D00D529A1 /* NullCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13197FE81EE87F3D00D529A1 /* NullCellView.xib */; };
 		13197FF01EE9213500D529A1 /* NullTextPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 13197FEF1EE9213500D529A1 /* NullTextPopover.m */; };
 		13197FF31EE921DC00D529A1 /* NullDatePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 13197FF21EE921DC00D529A1 /* NullDatePopover.m */; };
@@ -48,6 +50,10 @@
 		13191CA11EE9852D0061923D /* TypeCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeCellView.m; sourceTree = "<group>"; };
 		13191CA31EE985C80061923D /* CheckCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckCellView.h; sourceTree = "<group>"; };
 		13191CA41EE985C80061923D /* CheckCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckCellView.m; sourceTree = "<group>"; };
+		13191CA61EE9CE700061923D /* EditForeignKeysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditForeignKeysViewController.h; sourceTree = "<group>"; };
+		13191CA71EE9CE700061923D /* EditForeignKeysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditForeignKeysViewController.m; sourceTree = "<group>"; };
+		13191CA91EE9D5390061923D /* ForeignKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForeignKey.h; sourceTree = "<group>"; };
+		13191CAA1EE9D5390061923D /* ForeignKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForeignKey.m; sourceTree = "<group>"; };
 		13197FE81EE87F3D00D529A1 /* NullCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NullCellView.xib; sourceTree = "<group>"; };
 		13197FEE1EE9213500D529A1 /* NullTextPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullTextPopover.h; sourceTree = "<group>"; };
 		13197FEF1EE9213500D529A1 /* NullTextPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullTextPopover.m; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 				13191C9B1EE958A50061923D /* ReportViewController.m */,
 				13191C9D1EE9708E0061923D /* EditTableViewController.h */,
 				13191C9E1EE9708E0061923D /* EditTableViewController.m */,
+				13191CA61EE9CE700061923D /* EditForeignKeysViewController.h */,
+				13191CA71EE9CE700061923D /* EditForeignKeysViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -239,6 +247,8 @@
 			children = (
 				139F035E1EC4A13800AEB388 /* Table.h */,
 				139F035F1EC4A13800AEB388 /* Table.m */,
+				13191CA91EE9D5390061923D /* ForeignKey.h */,
+				13191CAA1EE9D5390061923D /* ForeignKey.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -564,6 +574,7 @@
 				136184FD1EC1D54500CE0D56 /* NSString+Oracle.m in Sources */,
 				139F03601EC4A13800AEB388 /* Table.m in Sources */,
 				136184E21EC17BE500CE0D56 /* LoginViewController.m in Sources */,
+				13191CA81EE9CE700061923D /* EditForeignKeysViewController.m in Sources */,
 				136184F91EC1CCD300CE0D56 /* ContentViewController.m in Sources */,
 				13A2E7CA1E8FD6E30063A476 /* MainViewController.m in Sources */,
 				136184EF1EC1C2D700CE0D56 /* NSViewController+ErrorString.m in Sources */,
@@ -572,6 +583,7 @@
 				13191CA21EE9852D0061923D /* TypeCellView.m in Sources */,
 				135277811EE18F9C00D22215 /* DateCellView.m in Sources */,
 				13191C9F1EE9708E0061923D /* EditTableViewController.m in Sources */,
+				13191CAB1EE9D53A0061923D /* ForeignKey.m in Sources */,
 				13A2E7C71E8FD6E30063A476 /* main.m in Sources */,
 				13A2E7C41E8FD6E30063A476 /* AppDelegate.m in Sources */,
 				13191C9C1EE958A50061923D /* ReportViewController.m in Sources */,
