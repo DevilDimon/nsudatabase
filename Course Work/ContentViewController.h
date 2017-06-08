@@ -14,4 +14,6 @@
 @property (nonatomic, assign) OCI_Connection *conn;
 @property (nonatomic, copy) NSString *tableName;
 
+- (IBAction)onRefreshPressed:(id)sender;
+
 @end

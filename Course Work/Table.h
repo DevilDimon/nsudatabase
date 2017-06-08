@@ -22,5 +22,6 @@
 - (BOOL)refresh;
 - (BOOL)deleteRow:(NSInteger)row;
 - (BOOL)updateRow:(NSInteger)row columnName:(NSString *)column newValue:(id)value;
+- (BOOL)insertRowWithColumns:(NSArray *)columns values:(NSArray *)values;
 
 @end

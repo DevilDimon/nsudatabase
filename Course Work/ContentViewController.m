@@ -12,6 +12,7 @@
 #import "DateCellView.h"
 #import "NullTextPopover.h"
 #import "NullDatePopover.h"
+#import "InsertRowViewController.h"
 
 @interface ContentViewController () <NSTableViewDelegate, NSTableViewDataSource, NSPopoverDelegate>
 
@@ -147,7 +148,10 @@
 
 - (void)addNewRow
 {
-    
+    InsertRowViewController *vc = [[NSStoryboard storyboardWithName:@"Main"
+        bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"InsertRowViewController"];
+    vc.table = self.table;
+    [self presentViewControllerAsModalWindow:vc];
 }
 
 - (void)deleteRow
@@ -317,6 +321,17 @@
     
     [self.view.window endSheet:progressWC.window];
 
+}
+
+- (void)dismissViewController:(NSViewController *)viewController
+{
+    
+    [super dismissViewController:viewController];
+    
+    if ([viewController isKindOfClass:[InsertRowViewController class]]) {
+        [self onRefreshPressed:nil];
+    }
+    
 }
 
 @end

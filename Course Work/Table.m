@@ -140,6 +140,48 @@
     return YES;
 }
 
+- (BOOL)insertRowWithColumns:(NSArray *)columns values:(NSArray *)values
+{
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"INSERT INTO %@ VALUES (", self.name];
+    
+    for (int i = 0; i < columns.count; i++) {
+        [sql appendFormat:@"%@, ", [self formatForInsert:values[i] type:self.columns[columns[i]]]];
+    }
+    
+    [sql deleteCharactersInRange:NSMakeRange(sql.length - 2, 2)];
+    [sql appendString:@")"];
+    
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    [self refresh];
+    
+    return YES;
+}
+
+- (NSString *)formatForInsert:(NSString *)value type:(NSString *)type
+{
+    if ([value isEqualToString:@"NULL"]) {
+        return value;
+    }
+    if ([type isEqualToString:@"NUMBER"]) {
+        return value;
+    }
+    if ([type isEqualToString:@"VARCHAR2"]) {
+        return [NSString stringWithFormat:@"'%@'", value];
+    }
+    if ([type isEqualToString:@"DATE"]) {
+        NSString *format = @"YYYY-MM-DD HH24:MI:SS";
+        return [NSString stringWithFormat:@"TO_DATE('%@', '%@')", value, format];
+    }
+    
+    return nil;
+}
+
 - (NSString *)formatForWhereClause:(id)value type:(NSString *)type
 {
     if (value == [NSNull null]) {
