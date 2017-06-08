@@ -36,7 +36,6 @@
 {
     OCI_Statement *st = OCI_StatementCreate(self.conn);
     if (OCI_ExecuteStmt(st, "SELECT table_name FROM user_tables") != TRUE) {
-        OCI_StatementFree(st);
         return NO;
     }
     
@@ -46,6 +45,19 @@
         NSString *table = [NSString stringWithOtext:OCI_GetString(rs, 1)];
         [self.tableNames addObject:table];
     }
+    
+    return YES;
+}
+
+- (BOOL)dropTable
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    if (OCI_ExecuteStmt(st, [[NSString stringWithFormat:@"DROP TABLE %@",
+                              self.tableNames[self.tableView.selectedRow]] otext]) != TRUE) {
+        return NO;
+    }
+    
+    [self.tableNames removeObjectAtIndex:self.tableView.selectedRow];
     
     return YES;
 }
@@ -74,16 +86,7 @@
     [progressWC.window makeKeyWindow];
     
     
-    if (![self refresh]) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        alert.alertStyle = NSAlertStyleCritical;
-        alert.messageText = @"Table List Refresh Error";
-        alert.informativeText = [self errorString];
-        [alert runModal];
-        
-        [self.view.window endSheet:progressWC.window];
-        return;
-    }
+    [self refresh];
     
     [self.tableView reloadData];
     [self.tableView scrollRowToVisible:0];
@@ -91,8 +94,30 @@
     [self.view.window endSheet:progressWC.window];
 }
 
+- (IBAction)onDropTable:(id)sender
+{
+    if (self.tableView.selectedRow < 0) {
+        return;
+    }
+    
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    [self dropTable];
+    
+    [self.tableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:self.tableView.selectedRow]
+        withAnimation:NSTableViewAnimationEffectFade];
+    [self.tableView deselectAll:nil];
+    
+    [self.view.window endSheet:progressWC.window];
+}
+
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
+    if (self.tableView.selectedRow < 0) {
+        return;
+    }
     self.contentVC.tableName = self.tableNames[self.tableView.selectedRow];
 }
 

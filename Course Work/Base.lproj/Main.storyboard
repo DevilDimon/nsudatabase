@@ -588,6 +588,19 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BHz-eS-9cW">
+                                <rect key="frame" x="25" y="0.0" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BHz-eS-9cW" secondAttribute="height" id="nrO-ax-xYX"/>
+                                </constraints>
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="uRP-Dt-xac">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onDropTable:" target="TAD-65-2vQ" id="CAX-Ew-1Ou"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="j3L-L7-Qny" secondAttribute="bottom" id="0Be-cr-cjs"/>
@@ -595,7 +608,9 @@ Gw
                             <constraint firstItem="j3L-L7-Qny" firstAttribute="leading" secondItem="YnA-0W-xkS" secondAttribute="leading" id="Sy4-2g-ZG6"/>
                             <constraint firstItem="Caj-4u-XVR" firstAttribute="bottom" secondItem="j3L-L7-Qny" secondAttribute="top" id="Tzf-k3-egA"/>
                             <constraint firstItem="Caj-4u-XVR" firstAttribute="leading" secondItem="YnA-0W-xkS" secondAttribute="leading" id="cCJ-aR-FaW"/>
+                            <constraint firstAttribute="bottom" secondItem="BHz-eS-9cW" secondAttribute="bottom" id="gHy-Vk-FTi"/>
                             <constraint firstAttribute="trailing" secondItem="Caj-4u-XVR" secondAttribute="trailing" id="idq-V6-y2N"/>
+                            <constraint firstItem="BHz-eS-9cW" firstAttribute="leading" secondItem="j3L-L7-Qny" secondAttribute="trailing" id="x9s-Mb-hDe"/>
                         </constraints>
                     </view>
                     <connections>
@@ -682,5 +697,6 @@ Gw
     <resources>
         <image name="Code" width="64" height="64"/>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
     </resources>
 </document>
