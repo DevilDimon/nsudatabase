@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13197FE91EE87F3D00D529A1 /* NullCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13197FE81EE87F3D00D529A1 /* NullCellView.xib */; };
+		13197FF01EE9213500D529A1 /* NullTextPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 13197FEF1EE9213500D529A1 /* NullTextPopover.m */; };
+		13197FF31EE921DC00D529A1 /* NullDatePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 13197FF21EE921DC00D529A1 /* NullDatePopover.m */; };
 		1352777E1EE18DAB00D22215 /* DateCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1352777D1EE18DAB00D22215 /* DateCellView.xib */; };
 		135277811EE18F9C00D22215 /* DateCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 135277801EE18F9C00D22215 /* DateCellView.m */; };
 		136184E21EC17BE500CE0D56 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 136184E11EC17BE500CE0D56 /* LoginViewController.m */; };
@@ -32,6 +35,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13197FE81EE87F3D00D529A1 /* NullCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NullCellView.xib; sourceTree = "<group>"; };
+		13197FEE1EE9213500D529A1 /* NullTextPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullTextPopover.h; sourceTree = "<group>"; };
+		13197FEF1EE9213500D529A1 /* NullTextPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullTextPopover.m; sourceTree = "<group>"; };
+		13197FF11EE921DC00D529A1 /* NullDatePopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullDatePopover.h; sourceTree = "<group>"; };
+		13197FF21EE921DC00D529A1 /* NullDatePopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullDatePopover.m; sourceTree = "<group>"; };
+		13197FF51EE9240200D529A1 /* CellRelated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellRelated.h; sourceTree = "<group>"; };
 		1352777D1EE18DAB00D22215 /* DateCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateCellView.xib; sourceTree = "<group>"; };
 		1352777F1EE18F9C00D22215 /* DateCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCellView.h; sourceTree = "<group>"; };
 		135277801EE18F9C00D22215 /* DateCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCellView.m; sourceTree = "<group>"; };
@@ -153,6 +162,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13197FF41EE923DA00D529A1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				13197FF51EE9240200D529A1 /* CellRelated.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		136184DF1EC17BBD00CE0D56 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +183,10 @@
 				136184F71EC1CCD300CE0D56 /* ContentViewController.m */,
 				13CB317B1EC8BDE3005D9E25 /* CodeViewController.h */,
 				13CB317C1EC8BDE3005D9E25 /* CodeViewController.m */,
+				13197FEE1EE9213500D529A1 /* NullTextPopover.h */,
+				13197FEF1EE9213500D529A1 /* NullTextPopover.m */,
+				13197FF11EE921DC00D529A1 /* NullDatePopover.h */,
+				13197FF21EE921DC00D529A1 /* NullDatePopover.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -222,6 +243,7 @@
 		13A2E7C11E8FD6E30063A476 /* Course Work */ = {
 			isa = PBXGroup;
 			children = (
+				13197FF41EE923DA00D529A1 /* Protocols */,
 				13CB31771EC78675005D9E25 /* TableCellView */,
 				139F035D1EC4A11700AEB388 /* Database */,
 				136184EC1EC1C2AA00CE0D56 /* Categories */,
@@ -370,6 +392,7 @@
 				1352777D1EE18DAB00D22215 /* DateCellView.xib */,
 				1352777F1EE18F9C00D22215 /* DateCellView.h */,
 				135277801EE18F9C00D22215 /* DateCellView.m */,
+				13197FE81EE87F3D00D529A1 /* NullCellView.xib */,
 			);
 			name = TableCellView;
 			sourceTree = "<group>";
@@ -450,6 +473,7 @@
 				13CB31761EC7802B005D9E25 /* TextCellView.xib in Resources */,
 				1352777E1EE18DAB00D22215 /* DateCellView.xib in Resources */,
 				13A2E7CF1E8FD6E30063A476 /* Main.storyboard in Resources */,
+				13197FE91EE87F3D00D529A1 /* NullCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +534,7 @@
 			files = (
 				136184E61EC1894E00CE0D56 /* MainWindowController.m in Sources */,
 				13CB317D1EC8BDE3005D9E25 /* CodeViewController.m in Sources */,
+				13197FF31EE921DC00D529A1 /* NullDatePopover.m in Sources */,
 				136184FD1EC1D54500CE0D56 /* NSString+Oracle.m in Sources */,
 				139F03601EC4A13800AEB388 /* Table.m in Sources */,
 				136184E21EC17BE500CE0D56 /* LoginViewController.m in Sources */,
@@ -517,6 +542,7 @@
 				13A2E7CA1E8FD6E30063A476 /* MainViewController.m in Sources */,
 				136184EF1EC1C2D700CE0D56 /* NSViewController+ErrorString.m in Sources */,
 				136184EA1EC1897A00CE0D56 /* LoginWindowController.m in Sources */,
+				13197FF01EE9213500D529A1 /* NullTextPopover.m in Sources */,
 				135277811EE18F9C00D22215 /* DateCellView.m in Sources */,
 				13A2E7C71E8FD6E30063A476 /* main.m in Sources */,
 				13A2E7C41E8FD6E30063A476 /* AppDelegate.m in Sources */,

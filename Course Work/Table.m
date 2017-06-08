@@ -36,6 +36,7 @@
         return YES;
     }
     
+    
     OCI_TypeInfo *info = OCI_TypeInfoGet(self.conn, [self.name otext], OCI_TIF_TABLE);
     if (!info) {
         return NO;
@@ -68,12 +69,11 @@
     while (OCI_FetchNext(rs)) {
         NSMutableArray *row = [NSMutableArray arrayWithCapacity:self.columns.count];
         for (NSString *column in self.columns) {
+            if (OCI_IsNull2(rs, [column otext])) {
+                [row addObject:[NSNull null]];
+                continue;
+            }
             if ([self.columns[column] isEqualToString:@"DATE"]) {
-                if (OCI_IsNull2(rs, [column otext])) {
-                    [row addObject:[NSNull null]];
-                    continue;
-                }
-                
                 OCI_Date *date = OCI_GetDate2(rs, [column otext]);
                 time_t pt;
                 OCI_DateToCTime(date, NULL, &pt);
@@ -96,16 +96,15 @@
 {
     NSMutableString *sql = [NSMutableString stringWithFormat:@"DELETE FROM %@ WHERE ", self.name];
     for (NSString *columnName in self.columns) {
-        NSString *value = self.rows[row][[self.columns indexOfKey:columnName]];
-        [sql appendFormat:@"%@ = %@ AND ", columnName,
-         [self formatForWhereClause:value type:self.columns[columnName]]];
+        id value = self.rows[row][[self.columns indexOfKey:columnName]];
+        [sql appendFormat:@"%@ AND ", [self whereClauseWithColumn:columnName value:value
+            type:self.columns[columnName]]];
     }
     
     [sql deleteCharactersInRange:NSMakeRange(sql.length - 5, 5)];
     
     OCI_Statement *st = OCI_StatementCreate(self.conn);
     if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
-        OCI_StatementFree(st);
         return NO;
     }
     OCI_StatementFree(st);
@@ -121,30 +120,29 @@
     NSMutableString *sql = [NSMutableString stringWithFormat:@"UPDATE %@ SET %@ = %@ WHERE ",
         self.name, column, formattedValue];
     for (NSString *columnName in self.columns) {
-        NSString *curValue = self.rows[row][[self.columns indexOfKey:columnName]];
-        [sql appendFormat:@"%@ = %@ AND ", columnName,
-         [self formatForWhereClause:curValue type:self.columns[columnName]]];
+        id curValue = self.rows[row][[self.columns indexOfKey:columnName]];
+        [sql appendFormat:@"%@ AND ", [self whereClauseWithColumn:columnName value:curValue
+            type:self.columns[columnName]]];
     }
     
     [sql deleteCharactersInRange:NSMakeRange(sql.length - 5, 5)];
     
     OCI_Statement *st = OCI_StatementCreate(self.conn);
     if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
-        OCI_StatementFree(st);
         return NO;
     }
     
     OCI_StatementFree(st);
     
     NSInteger col = [self.columns indexOfKey:column];
-    self.rows[row][col] = value ?: @"NULL";
+    self.rows[row][col] = value ?: [NSNull null];
     
     return YES;
 }
 
 - (NSString *)formatForWhereClause:(id)value type:(NSString *)type
 {
-    if (!value) {
+    if (value == [NSNull null]) {
         return @"NULL";
     }
     if ([type isEqualToString:@"NUMBER"]) {
@@ -164,6 +162,17 @@
     }
     
     return nil;
+}
+
+- (NSString *)whereClauseWithColumn:(NSString *)columnName value:(id)value type:(NSString *)type
+{
+    if (value == [NSNull null]) {
+        return [NSString stringWithFormat:@"%@ IS NULL", columnName];
+    }
+    else {
+        return [NSString stringWithFormat:@"%@ = %@", columnName, [self formatForWhereClause:value
+            type:type]];
+    }
 }
 
 - (BOOL)isTypeSupported:(NSString *)type

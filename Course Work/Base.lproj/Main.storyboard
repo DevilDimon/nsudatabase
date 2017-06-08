@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -153,10 +154,10 @@
             </objects>
             <point key="canvasLocation" x="-669" y="460"/>
         </scene>
-        <!--View Controller-->
+        <!--Loading Bar-->
         <scene sceneID="ncS-pa-wIV">
             <objects>
-                <viewController id="S7r-mT-ZGU" sceneMemberID="viewController">
+                <viewController title="Loading Bar" id="S7r-mT-ZGU" sceneMemberID="viewController">
                     <view key="view" id="jFA-fw-eQx">
                         <rect key="frame" x="0.0" y="0.0" width="322" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -511,17 +512,17 @@ Gw
             <objects>
                 <viewController id="TAD-65-2vQ" customClass="TableListViewController" sceneMemberID="viewController">
                     <view key="view" id="YnA-0W-xkS">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="236"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Caj-4u-XVR">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <rect key="frame" x="0.0" y="25" width="450" height="211"/>
                                 <clipView key="contentView" id="bHw-PT-WND">
-                                    <rect key="frame" x="1" y="1" width="448" height="298"/>
+                                    <rect key="frame" x="1" y="1" width="448" height="209"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="Upe-JO-goj">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="209"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -577,10 +578,22 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button toolTip="Create Table" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j3L-L7-Qny">
+                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="j3L-L7-Qny" secondAttribute="height" id="ohl-0f-78n"/>
+                                </constraints>
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="KFA-uc-cmw">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="j3L-L7-Qny" secondAttribute="bottom" id="0Be-cr-cjs"/>
                             <constraint firstItem="Caj-4u-XVR" firstAttribute="top" secondItem="YnA-0W-xkS" secondAttribute="top" id="AZy-Qq-aGX"/>
-                            <constraint firstAttribute="bottom" secondItem="Caj-4u-XVR" secondAttribute="bottom" id="XXM-Mm-W4n"/>
+                            <constraint firstItem="j3L-L7-Qny" firstAttribute="leading" secondItem="YnA-0W-xkS" secondAttribute="leading" id="Sy4-2g-ZG6"/>
+                            <constraint firstItem="Caj-4u-XVR" firstAttribute="bottom" secondItem="j3L-L7-Qny" secondAttribute="top" id="Tzf-k3-egA"/>
                             <constraint firstItem="Caj-4u-XVR" firstAttribute="leading" secondItem="YnA-0W-xkS" secondAttribute="leading" id="cCJ-aR-FaW"/>
                             <constraint firstAttribute="trailing" secondItem="Caj-4u-XVR" secondAttribute="trailing" id="idq-V6-y2N"/>
                         </constraints>
@@ -592,7 +605,7 @@ Gw
                 <customObject id="0pA-VX-5xN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="qon-bD-py1" customClass="ContentViewController"/>
             </objects>
-            <point key="canvasLocation" x="546" y="1758"/>
+            <point key="canvasLocation" x="569" y="1702"/>
         </scene>
         <!--Content View Controller-->
         <scene sceneID="V6Z-WC-9UZ">
@@ -607,8 +620,67 @@ Gw
             </objects>
             <point key="canvasLocation" x="1137" y="1684"/>
         </scene>
+        <!--Null Text Editor-->
+        <scene sceneID="bxK-js-9w6">
+            <objects>
+                <viewController title="Null Text Editor" storyboardIdentifier="NullTextPopover" id="wuS-xu-DG3" customClass="NullTextPopover" sceneMemberID="viewController">
+                    <view key="view" id="ayK-Ew-LVA">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jo4-mK-dhR">
+                                <rect key="frame" x="27" y="14" width="96" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="New Value" drawsBackground="YES" id="zlg-sK-IDh">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="jo4-mK-dhR" id="xVu-3E-shq"/>
+                    </connections>
+                </viewController>
+                <customObject id="ifM-Zu-XjK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="1573"/>
+        </scene>
+        <!--Null Date Editor-->
+        <scene sceneID="e13-ib-UHM">
+            <objects>
+                <viewController title="Null Date Editor" storyboardIdentifier="NullDatePopover" id="uZh-VY-DOv" customClass="NullDatePopover" sceneMemberID="viewController">
+                    <view key="view" id="DN7-6C-5ej">
+                        <rect key="frame" x="0.0" y="0.0" width="198" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fmx-Yt-YYY">
+                                <rect key="frame" x="15" y="13" width="171" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="aNu-Sb-tC2">
+                                    <font key="font" metaFont="system"/>
+                                    <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                        <!--1982-02-12 16:00:00 +0000-->
+                                    </date>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <datePickerElements key="datePickerElements" year="YES" month="YES" day="YES" hour="YES" minute="YES" second="YES"/>
+                                </datePickerCell>
+                            </datePicker>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="Fmx-Yt-YYY" id="nTy-jj-ArB"/>
+                    </connections>
+                </viewController>
+                <customObject id="i1j-0c-r0u" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1494" y="1684"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Code" width="64" height="64"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
     </resources>
 </document>

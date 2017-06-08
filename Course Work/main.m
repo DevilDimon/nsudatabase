@@ -10,7 +10,16 @@
 #import "ocilib.h"
 
 static void error_handler(OCI_Error *err) {
-    NSLog(@"OCILib error: %s", OCI_ErrorGetString(err));
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSAlertStyleCritical;
+    alert.messageText = @"Error";
+    alert.informativeText = [NSString stringWithFormat:@"code  : ORA-%05i\n"
+                                    "msg   : %s\n"
+                                    "sql   : %s\n",
+                                    OCI_ErrorGetOCICode(err),
+                                    OCI_ErrorGetString(err),
+                                    OCI_GetSql(OCI_ErrorGetStatement(err))];
+    [alert runModal];
 }
 
 
