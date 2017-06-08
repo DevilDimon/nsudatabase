@@ -63,7 +63,12 @@
         }
         if ([tableColumn.identifier isEqualToString:@"NotNullColumn"]) {
             CheckCellView *cell = [tableView makeViewWithIdentifier:@"NotNullCell" owner:self];
-            cell.checkbox.state = NSOffState;
+            if (![self.table.nullableColumns containsObject:[self.table.columns keyAtIndex:row]]) {
+                cell.checkbox.state = NSOnState;
+            }
+            else {
+                cell.checkbox.state = NSOffState;
+            }
             return cell;
         }
         if ([tableColumn.identifier isEqualToString:@"UniqueColumn"]) {
@@ -145,6 +150,23 @@
     
     [self.constraintsTableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
         columnIndexes:[NSIndexSet indexSetWithIndex:1]];
+    
+    [self.view.window endSheet:progressWC.window];
+}
+
+- (IBAction)onAttributeNullabilityChanged:(NSPopUpButton *)sender
+{
+    NSWindowController *progressWC = [[NSStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateControllerWithIdentifier:@"ProgressWindowController"];
+    [self.view.window beginSheet:progressWC.window completionHandler:^(NSModalResponse response) {}];
+    [progressWC.window makeKeyWindow];
+    
+    NSInteger row = [self.constraintsTableView rowForView:sender];
+    NSString *name = [self.table.columns keyAtIndex:row];
+    
+    [self.table alterAttributeNullability:name nullability:sender.state == NSOffState];
+    
+    [self.constraintsTableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row]
+        columnIndexes:[NSIndexSet indexSetWithIndex:2]];
     
     [self.view.window endSheet:progressWC.window];
 }

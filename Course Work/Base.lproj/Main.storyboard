@@ -643,6 +643,9 @@ Gw
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="onAttributeNullabilityChanged:" target="5I6-dv-OPl" id="y8h-f5-6aj"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <connections>

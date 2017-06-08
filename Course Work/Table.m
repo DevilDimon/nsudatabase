@@ -64,16 +64,21 @@ static NSString *const VarcharLimit = @"64";
     int n = OCI_TypeInfoGetColumnCount(info);
     
     MutableOrderedDictionary *newColumns = [MutableOrderedDictionary dictionary];
+    NSMutableArray *newNullableColumns = [NSMutableArray array];
     for (int i = 1; i <= n; i++) {
         OCI_Column *column = OCI_TypeInfoGetColumn(info, i);
         NSString *columnName = [NSString stringWithOtext:OCI_ColumnGetName(column)];
         NSString *columnType = [NSString stringWithOtext:OCI_ColumnGetSQLType(column)];
         if ([self isTypeSupported:columnType]) {
             newColumns[columnName] = columnType;
+            if (OCI_ColumnGetNullable(column) == TRUE) {
+                [newNullableColumns addObject:columnName];
+            }
         }
     }
     
     self.columns = [newColumns copy];
+    self.nullableColumns = newNullableColumns;
     OCI_TypeInfoFree(info);
     
     self.rows = [NSMutableArray array];
@@ -300,6 +305,28 @@ static NSString *const VarcharLimit = @"64";
     OCI_StatementFree(st);
     
     return [self refresh];
+}
+
+- (BOOL)alterAttributeNullability:(NSString *)attribute nullability:(BOOL)nullability
+{
+    OCI_Statement *st = OCI_StatementCreate(self.conn);
+    NSString *sql = [NSString stringWithFormat:@"ALTER TABLE %@ MODIFY (%@ %@)", self.name,
+        attribute, nullability ? @"NULL" : @"NOT NULL"];
+    
+    if (OCI_ExecuteStmt(st, [sql otext]) != TRUE) {
+        return NO;
+    }
+    
+    OCI_StatementFree(st);
+    
+    if (nullability) {
+        [self.nullableColumns addObject:attribute];
+    }
+    else {
+        [self.nullableColumns removeObject:attribute];
+    }
+    
+    return YES;
 }
 
 @end

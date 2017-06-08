@@ -17,6 +17,7 @@
 @property (nonatomic) OCI_Resultset *rs;
 @property (nonatomic) OrderedDictionary<NSString *, NSString *> *columns;
 @property (nonatomic) NSMutableArray<NSMutableArray *> *rows;
+@property (nonatomic) NSMutableArray<NSString *> *nullableColumns;
 
 - (instancetype)initWithName:(NSString *)name connection:(OCI_Connection *)conn
     resultSet:(OCI_Resultset *)rs;
@@ -28,5 +29,6 @@
 - (BOOL)alterName:(NSString *)name;
 - (BOOL)alterAttributeName:(NSString *)attribute newName:(NSString *)newName;
 - (BOOL)alterAttributeType:(NSString *)attribute newType:(NSString *)type;
+- (BOOL)alterAttributeNullability:(NSString *)attribute nullability:(BOOL)nullability;
 
 @end
